@@ -1,4 +1,5 @@
 import CustomButton from "@/components/UI/Button";
+import UserAuth from "@/components/UserAuth";
 
 export default function Home() {
   return (
@@ -6,6 +7,7 @@ export default function Home() {
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
         <CustomButton text="test" type="primary" />
         <CustomButton text="test2" type="secondary" />
+        <UserAuth />
       </main>
     </div>
   );

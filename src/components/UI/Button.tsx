@@ -1,4 +1,4 @@
-import React, { SVGProps } from "react";
+import React from "react";
 import Button from "@mui/material/Button";
 
 interface ButtonType {
@@ -8,7 +8,7 @@ interface ButtonType {
   cssClasses?: string;
 }
 
-const Btn = (props: ButtonType) => {
+const CustomButton = (props: ButtonType) => {
   return (
     <Button
       variant="contained"
@@ -21,4 +21,4 @@ const Btn = (props: ButtonType) => {
   );
 };
 
-export default Btn;
+export default CustomButton;
