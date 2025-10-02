@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
-
-// Using App Router
 import { Roboto_Mono } from "next/font/google";
+
 import theme from "./theme";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import { ThemeProvider } from "@mui/material/styles";
+import { CssBaseline } from "@mui/material";
 
 const robotoMono = Roboto_Mono({
   subsets: ["latin"],
@@ -26,9 +26,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${robotoMono.variable} antialiased px-2`}>
-        <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-          <ThemeProvider theme={theme}>{children}</ThemeProvider>
+      <body className={`${robotoMono.variable} antialiased overflow-x-hidden`}>
+        <AppRouterCacheProvider
+          options={{ enableCssLayer: false, prepend: true }}
+        >
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            {children}
+          </ThemeProvider>
         </AppRouterCacheProvider>
       </body>
     </html>

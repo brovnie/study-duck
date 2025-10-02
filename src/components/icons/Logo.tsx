@@ -22,7 +22,9 @@ const Logo = () => {
           fill="#FBD900"
         />
       </svg>
-      <p className={`${robotoMono.className} text-[14px] uppercase`}>
+      <p
+        className={`${robotoMono.className} text-[14px] uppercase hidden md:block`}
+      >
         Study Duck
       </p>
     </div>
