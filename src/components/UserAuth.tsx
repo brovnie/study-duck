@@ -8,7 +8,7 @@ import CustomButton from "./UI/Button";
 const UserAuth = () => {
   const [isSignIn, setisSignIn] = useState(true);
   return (
-    <div className="font-mono w-full flex flex-col items-start bg-gray-50 px-6 py-6  rounded-md shadow-xl">
+    <div className="font-mono  flex flex-col items-start bg-gray-50 px-6 py-6  rounded-md shadow-xl">
       <div>
         <p className="inline-block self-start text-2xl font-bold mb-3">
           Sign {isSignIn ? "In" : "Out"}
