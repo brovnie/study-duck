@@ -1,42 +1,73 @@
 "use client";
 import Logo from "@/components/icons/Logo";
-import CustomButton from "@/components/UI/Button";
 import CardSwap, { Card } from "@/components/UI/CardSwap";
 import CustomLink from "@/components/UI/Link";
-import { url } from "inspector";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function Home() {
+  const genericHamburgerLine = `h-1 w-8 my-1 rounded-full bg-dark transition ease transform duration-300`;
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="font-mono h-screen">
-      <div className="bg-white sticky">
+      <div className="bg-white sticky top-0 z-30">
         <header className="h-[50px] flex items-center justify-between container px-5 md:px-0 mx-auto">
           <Link href="/">
             <Logo />
           </Link>
-          <nav>
-            <ul className="flex flex-row gap-2 items-center">
-              <li>
+          <div className="flex md:hidden items-center z-40">
+            <button
+              className="flex flex-col bg-white h-10 w-10 justify-center items-center group -scale-80"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              <div
+                className={`${genericHamburgerLine} ${
+                  isOpen
+                    ? "rotate-45 translate-y-3 group-hover:opacity-100"
+                    : " group-hover:opacity-100"
+                }`}
+              />
+              <div
+                className={`${genericHamburgerLine} ${
+                  isOpen ? "opacity-0" : " group-hover:opacity-100"
+                }`}
+              />
+              <div
+                className={`${genericHamburgerLine} ${
+                  isOpen
+                    ? "-rotate-45 -translate-y-3 group-hover:opacity-100"
+                    : " group-hover:opacity-100"
+                }`}
+              />
+            </button>
+          </div>
+          <nav
+            className={`md:flex h-screen md:h-auto  md:static  w-full md:w-auto items-center justify-center ${
+              isOpen ? "flex bg-white z-20 absolute top-0 right-0" : "hidden"
+            }`}
+          >
+            <ul className="flex md:flex-row flex-col gap-5 md:gap-2 items-center h-full w-full flex-1 justify-center">
+              <li onClick={() => setIsOpen(false)}>
                 <Link
                   href="/"
-                  className="px-2 py-1 hover:border-b-2  border-b-amber-300"
+                  className="text-2xl md:text-base px-2 py-1 hover:border-b-2  border-b-amber-300"
                 >
                   Home
                 </Link>
               </li>
-              <li>
+              <li onClick={() => setIsOpen(false)}>
                 <a
                   href="#about"
-                  className="px-2 py-1 hover:border-b-2  border-b-amber-300"
+                  className="text-2xl md:text-base px-2 py-1 hover:border-b-2  border-b-amber-300"
                 >
                   About
                 </a>
               </li>
-              <li>
+              <li onClick={() => setIsOpen(false)}>
                 <a
                   href="#contact"
-                  className="px-2 py-1 hover:border-b-2  border-b-amber-300"
+                  className="text-2xl md:text-base px-2 py-1 hover:border-b-2  border-b-amber-300"
                 >
                   Contact
                 </a>
@@ -59,7 +90,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="relative w-full h-[300px] md:h-screen relative bg-amber-300 md:bg-transparent">
+        <div className="relative w-full h-[300px] md:h-screen bg-amber-300 md:bg-transparent">
           <div className="hidden md:block absolute -top-20 -right-80 -z-10 bg-amber-300 rounded-full w-[150%] h-[120%]"></div>
           <CardSwap
             cardDistance={60}
