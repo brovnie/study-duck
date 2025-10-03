@@ -13,6 +13,7 @@ interface TextInputInterface {
   label: string;
   placeholder: string;
   defaultValue?: string;
+  className?: string;
 }
 
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
@@ -52,7 +53,7 @@ const TextInput = (props: TextInputInterface) => {
   const [inputValue, setInputValue] = useState("");
 
   return (
-    <FormControl variant="standard">
+    <FormControl variant="standard" className={props.className}>
       <YellowLabel shrink htmlFor={props.id} className="text-lg">
         {props.label}
       </YellowLabel>

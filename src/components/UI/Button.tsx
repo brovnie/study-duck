@@ -7,6 +7,7 @@ interface ButtonType {
   icon?: React.ReactNode;
   cssClasses?: string;
   type: "submit" | "button" | "reset";
+  onClick?: () => void;
 }
 
 const CustomButton = (props: ButtonType) => {
@@ -17,6 +18,7 @@ const CustomButton = (props: ButtonType) => {
       className={props.cssClasses}
       endIcon={props.icon}
       type={props.type}
+      onClick={props.onClick}
     >
       {props.text}
     </Button>
