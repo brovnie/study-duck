@@ -15,7 +15,7 @@ const Hero = () => {
           Join real-time video study sessions, stay accountable, earn points,
           and unlock new study partners along the way.
         </p>
-        <CustomLink href="/auth" text="Sign In" />
+        <CustomLink href="/auth?signup=true" text="Join for free" />
       </div>
 
       <div className="relative w-full h-[300px] md:h-screen bg-amber-300 md:bg-transparent mt-14 md:mt-0">

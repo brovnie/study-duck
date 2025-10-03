@@ -4,14 +4,19 @@ import TextInput from "./UI/TextInput";
 import Form from "next/form";
 import { submitForm } from "@/app/actions";
 import CustomButton from "./UI/Button";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const UserAuth = () => {
-  const [isSignIn, setisSignIn] = useState(true);
+  const searchParams = useSearchParams(); // This is NOT undefined in client components
+  // Get the value of the "signup" query parameter
+  const signup = searchParams.get("signup"); // will log "true" if /auth?signup=true
+
+  const [isSignIn, setisSignIn] = useState(signup === "true" ? false : true);
   return (
     <div className="font-mono  flex flex-col items-start bg-gray-50 px-6 py-6  rounded-md shadow-xl">
       <div>
         <p className="inline-block self-start text-2xl font-bold mb-3">
-          Sign {isSignIn ? "In" : "Out"}
+          Sign {isSignIn ? "In" : "Up"}
         </p>
         <Form action={submitForm} className="flex flex-col gap-5">
           <div className="flex flex-col gap-3 w-[325px]">

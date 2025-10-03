@@ -69,8 +69,11 @@ const Navigation = () => {
                 Contact
               </a>
             </li>
-            <li className="px-2">
-              <CustomLink href="/auth" text="Sign In" />
+            <li className="px-1">
+              <CustomLink href="/auth" text="Sign In" variant="secondary" />
+            </li>
+            <li className="px-1">
+              <CustomLink href="/auth?signup=true" text="Sign Up" />
             </li>
           </ul>
         </nav>
