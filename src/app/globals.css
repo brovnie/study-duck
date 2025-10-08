@@ -80,3 +80,7 @@
 * {
   box-sizing: border-box;
 }
+/* Calendar */
+.react-calendar__navigation__label {
+  width: 100% !important;
+}
