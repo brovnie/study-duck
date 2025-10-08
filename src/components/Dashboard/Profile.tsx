@@ -8,11 +8,10 @@ import CustomLink from "../UI/Link";
 import Link from "next/link";
 
 const CustomAccordion = styled(Accordion)(({ theme }) => ({
-  //backgroundColor: "var(--color-amber-300)",
   "& .MuiAccordionSummary-root": {
     cursor: "pointer",
     padding: "0px 10px",
-    pointerEvents: "auto", // important for summary
+    pointerEvents: "auto",
 
     zIndex: 1,
   },
