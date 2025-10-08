@@ -72,7 +72,7 @@ const Chart = () => {
   };
 
   return (
-    <div className="h-[500px] w-[100%]">
+    <div className="h-[450px] w-[100%]">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
           width={500}
