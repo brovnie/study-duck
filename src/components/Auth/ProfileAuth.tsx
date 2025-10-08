@@ -4,47 +4,7 @@ import IconButton from "@mui/material/IconButton";
 import React from "react";
 import CustomButton from "../UI/Button";
 import TextInput from "../UI/TextInput";
-import Select from "@mui/material/Select";
-import { alpha, styled } from "@mui/material/styles";
-import InputLabel from "@mui/material/InputLabel";
 import TimezoneSelect from "../TimezoneSelect";
-import { FormControl } from "@mui/material";
-const BootstrapSelect = styled(Select)(({ theme }) => ({
-  border: "none",
-  "label + &": {
-    marginTop: theme.spacing(3),
-  },
-  ".MuiInputBase-input": {
-    borderRadius: 10,
-    position: "relative",
-    backgroundColor: "white",
-    border: "1px solid",
-    borderColor: "var(--color-slate-400)",
-    fontSize: 14,
-    width: "100%",
-    padding: "10px 35px 10px 12px",
-    transition: theme.transitions.create([
-      "border-color",
-      "background-color",
-      "box-shadow",
-    ]),
-    "&:focus": {
-      boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
-      borderColor: theme.palette.primary.main,
-    },
-  },
-  // Remove border from select's root
-  ".MuiOutlinedInput-notchedOutline": {
-    border: "none",
-  },
-}));
-const YellowLabel = styled(InputLabel)(({ theme }) => ({
-  color: "var(--color-text-dark)",
-  "&.Mui-focused": {
-    color: theme.palette.primary.main,
-  },
-  left: -14,
-}));
 
 const ProfileAuth = () => {
   const fileInputRef = React.useRef<HTMLInputElement>(null);
