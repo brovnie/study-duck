@@ -25,18 +25,9 @@ const CustomAccordion = styled(Accordion)(({ theme }) => ({
   },
 }));
 const Profile = () => {
-  const [expanded, setExpanded] = React.useState(true);
-
-  const handleChange = (_event: React.SyntheticEvent, isExpanded: boolean) => {
-    console.log("isExpanded", isExpanded);
-    setExpanded(isExpanded);
-  };
-
   return (
     <div className="w-full px-4 mt-3 mb-5">
       <CustomAccordion
-        expanded={expanded}
-        onChange={handleChange}
         className="w-auto"
         sx={{
           position: "relative",
