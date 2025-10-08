@@ -66,6 +66,10 @@ const DashboardCalendar = () => {
         showNavigation={false}
         minDetail="month"
         maxDetail="month"
+        activeStartDate={activeStartDate} // 👈 controlled month
+        onActiveStartDateChange={({ activeStartDate }) =>
+          setActiveStartDate(activeStartDate!)
+        }
       />
       <hr className="my-2 border-slate-200 h-1" />
       <div>
