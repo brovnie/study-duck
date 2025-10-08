@@ -1,10 +1,19 @@
+"use client";
 import Link from "next/link";
-import React from "react";
+import { usePathname } from "next/navigation";
+import React, { useEffect } from "react";
 
 const Navigation = () => {
+  const pathname = usePathname();
+  const [active, setActive] = React.useState(pathname);
+
+  useEffect(() => {
+    setActive(pathname);
+  }, [pathname]);
+
   return (
     <nav className="w-full pl-7 mb-5">
-      <ul className="w-full flex flex-col gap-4 justify-start items-start">
+      <ul className="uppercase w-full flex flex-col gap-4 justify-start items-start">
         <li className="w-full">
           <Link href="/dashboard" className="flex flex-row gap-3 group w-full">
             <svg
@@ -23,7 +32,14 @@ const Navigation = () => {
               />
             </svg>
 
-            <span className="border-b-3 border-transparent group-hover:border-amber-300 transition-all duration-300">
+            <span
+              className={
+                "border-b-3 group-hover:border-amber-300 transition-all duration-300" +
+                (active === "/dashboard"
+                  ? " border-amber-300"
+                  : " border-transparent")
+              }
+            >
               Dashboard
             </span>
           </Link>
@@ -49,8 +65,15 @@ const Navigation = () => {
               />
             </svg>
 
-            <span className=" border-b-3 border-transparent group-hover:border-amber-300 transition-all duration-300">
-              Session
+            <span
+              className={
+                "border-b-3 group-hover:border-amber-300 transition-all duration-300" +
+                (active === "/dashboard/sessions"
+                  ? " border-amber-300"
+                  : " border-transparent")
+              }
+            >
+              Sessions
             </span>
           </Link>
         </li>
@@ -96,7 +119,15 @@ const Navigation = () => {
                 </clipPath>
               </defs>
             </svg>
-            <span className="group border-b-3 border-transparent group-hover:border-amber-300 transition-all duration-300">
+            <span
+              className={
+                "border-b-3 group-hover:border-amber-300 transition-all duration-300" +
+                (active === "/dashboard/group-sessions"
+                  ? " border-amber-300"
+                  : " border-transparent")
+              }
+            >
+              {" "}
               Group Sessions
             </span>
           </Link>
@@ -121,7 +152,15 @@ const Navigation = () => {
                 strokeLinejoin="round"
               />
             </svg>
-            <span className=" border-b-3 border-transparent group-hover:border-amber-300 transition-all duration-300">
+            <span
+              className={
+                "border-b-3 group-hover:border-amber-300 transition-all duration-300" +
+                (active === "/dashboard/friends"
+                  ? " border-amber-300"
+                  : " border-transparent")
+              }
+            >
+              {" "}
               Friends
             </span>
           </Link>
@@ -146,7 +185,14 @@ const Navigation = () => {
                 strokeLinejoin="round"
               />
             </svg>
-            <span className="border-b-3 border-transparent group-hover:border-amber-300 transition-all duration-300">
+            <span
+              className={
+                "border-b-3 group-hover:border-amber-300 transition-all duration-300" +
+                (active === "/dashboard/calendar"
+                  ? " border-amber-300"
+                  : " border-transparent")
+              }
+            >
               Calendar
             </span>
           </Link>
@@ -178,7 +224,14 @@ const Navigation = () => {
                 strokeLinejoin="round"
               />
             </svg>
-            <span className="border-b-3 border-transparent group-hover:border-amber-300 transition-all duration-300">
+            <span
+              className={
+                "border-b-3 group-hover:border-amber-300 transition-all duration-300" +
+                (active === "/dashboard/settings"
+                  ? " border-amber-300"
+                  : " border-transparent")
+              }
+            >
               Settings
             </span>
           </Link>
