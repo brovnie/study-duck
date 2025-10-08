@@ -1,7 +1,7 @@
 import React from "react";
-import Logo from "../icons/Logo";
+import Logo from "../../icons/Logo";
 import Profile from "./Profile";
-import CustomLink from "../UI/Link";
+import CustomLink from "../../UI/Link";
 import Navigation from "./Navigation";
 
 const Sidebar = () => {

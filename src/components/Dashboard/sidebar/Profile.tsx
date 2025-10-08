@@ -4,7 +4,7 @@ import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import { Avatar, styled } from "@mui/material";
-import CustomLink from "../UI/Link";
+import CustomLink from "../../UI/Link";
 import Link from "next/link";
 
 const CustomAccordion = styled(Accordion)(({ theme }) => ({
