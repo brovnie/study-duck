@@ -1,6 +1,7 @@
 import Friends from "@/components/Session/Friends";
+import OnlineUsers from "@/components/Session/OnlineUsers";
 import CustomLink from "@/components/UI/Link";
-import { Avatar } from "@mui/material";
+import PillTabs from "@/components/UI/PillTabs";
 import React from "react";
 
 const Sessions = () => {
@@ -32,7 +33,19 @@ const Sessions = () => {
             }
           />
         </div>
-        <Friends />
+        <PillTabs
+          view1={
+            <>
+              <Friends />
+              <OnlineUsers />
+            </>
+          }
+          view2={
+            <div>
+              <p>Plan</p>
+            </div>
+          }
+        />
       </div>
     </div>
   );
