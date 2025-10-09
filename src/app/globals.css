@@ -81,9 +81,6 @@
   box-sizing: border-box;
 }
 /* Calendar */
-.react-calendar__navigation__label {
-  width: 100% !important;
-}
 .react-calendar__tile.react-calendar__month-view__days__day {
   padding: 10px 0;
 }

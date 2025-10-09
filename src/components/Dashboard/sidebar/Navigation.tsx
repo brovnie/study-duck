@@ -73,7 +73,7 @@ const Navigation = () => {
                   : " border-transparent")
               }
             >
-              Sessions
+              Session
             </span>
           </Link>
         </li>
@@ -128,7 +128,7 @@ const Navigation = () => {
               }
             >
               {" "}
-              Group Sessions
+              Group Session
             </span>
           </Link>
         </li>

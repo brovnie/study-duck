@@ -5,7 +5,7 @@ import React from "react";
 
 const Dashboard = () => {
   return (
-    <div className="h-full w-full flex flex-row gap-3">
+    <div className="h-full w-full flex flex-row gap-2">
       <Stats />
       <DashboardCalendar />
     </div>

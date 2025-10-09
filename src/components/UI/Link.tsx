@@ -5,6 +5,7 @@ type LinkType = {
   text: string;
   cssClass?: string;
   variant?: "primary" | "secondary";
+  icon?: React.ReactNode;
 };
 
 const CustomLink = ({
@@ -12,6 +13,7 @@ const CustomLink = ({
   text,
   cssClass,
   variant = "primary",
+  icon,
 }: LinkType) => {
   return (
     <a
@@ -27,6 +29,7 @@ const CustomLink = ({
       }}
     >
       {text}
+      {icon && <span className="inline-block ml-2">{icon}</span>}
     </a>
   );
 };

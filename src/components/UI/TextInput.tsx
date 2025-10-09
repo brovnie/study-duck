@@ -10,10 +10,11 @@ import { EyeIcon } from "../icons/EyeIcon";
 interface TextInputInterface {
   type: "number" | "text" | "password" | "email";
   id: string;
-  label: string;
+  label?: string;
   placeholder: string;
   defaultValue?: string;
   className?: string;
+  hideLabel?: boolean;
 }
 
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
@@ -54,9 +55,11 @@ const TextInput = (props: TextInputInterface) => {
 
   return (
     <FormControl variant="standard" className={props.className}>
-      <YellowLabel shrink htmlFor={props.id} className="text-lg">
-        {props.label}
-      </YellowLabel>
+      {!props.hideLabel && (
+        <YellowLabel shrink htmlFor={props.id} className="text-lg">
+          {props.label}
+        </YellowLabel>
+      )}
       <BootstrapInput
         type={isPasswordVisible ? "text" : props.type}
         value={inputValue}
