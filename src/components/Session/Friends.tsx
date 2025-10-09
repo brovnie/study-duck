@@ -14,6 +14,9 @@ const CustomAccordion = styled(Accordion)(({ theme }) => ({
     paddingLeft: "8px",
     paddingRight: "8px",
   },
+  ".MuiAccordionDetails-root": {
+    paddingTop: 0,
+  },
 }));
 
 const Friends = () => {

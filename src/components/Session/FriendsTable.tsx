@@ -12,16 +12,10 @@ import {
 import React from "react";
 import CustomLink from "../UI/Link";
 
-const CustomTable = styled(TableContainer)(({ theme }) => ({
-  ".MuiAccordionDetails-root": {
-    paddingTop: 0,
-  },
-}));
-
 const FriendsTable = () => {
   return (
-    <CustomTable>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+    <TableContainer>
+      <Table sx={{ minWidth: 1050 }} aria-label="simple table">
         <TableHead>
           <TableRow className="bg-slate-100 rounded-t-md px-2">
             <TableCell className="rounded-tl-md">Profile</TableCell>
@@ -111,7 +105,7 @@ const FriendsTable = () => {
           </TableRow>
         </TableBody>
       </Table>
-    </CustomTable>
+    </TableContainer>
   );
 };
 
