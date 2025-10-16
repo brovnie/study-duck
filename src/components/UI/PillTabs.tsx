@@ -78,7 +78,7 @@ const PillTabs = ({ view1, view2 }: PillTabsInterface) => {
           minHeight: 0,
           mb: 1,
           "& .MuiTabs-indicator": {
-            display: "none", // hides the bottom indicator
+            display: "none",
           },
         }}
       >

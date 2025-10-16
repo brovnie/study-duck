@@ -72,31 +72,25 @@ const Chart = () => {
   };
 
   return (
-    <div className="h-[450px] w-[100%]">
-      <ResponsiveContainer width="100%" height="100%">
-        <BarChart
-          width={500}
-          height={300}
-          data={data}
-          margin={{
-            top: 5,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip content={<CustomTooltip />} />
-
-          <Bar
-            dataKey="sessions"
-            fill="#fcd34d"
-            activeBar={<Rectangle fill="#a855f7" stroke="#a855f7" />}
-          />
-        </BarChart>
-      </ResponsiveContainer>
+    <div className="flex justify-center">
+      <div className="h-[450px] w-full max-w-2xl">
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart
+            data={data}
+            margin={{ top: 10, right: 10, left: 0, bottom: 10 }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" tickMargin={10} />
+            <YAxis width={20} />
+            <Tooltip content={<CustomTooltip />} />
+            <Bar
+              dataKey="sessions"
+              fill="#fcd34d"
+              activeBar={<Rectangle fill="#a855f7" stroke="#a855f7" />}
+            />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 };
