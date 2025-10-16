@@ -35,10 +35,10 @@ const Sessions = () => {
         </div>
         <PillTabs
           view1={
-            <>
+            <div>
               <Friends />
               <OnlineUsers />
-            </>
+            </div>
           }
           view2={
             <div>

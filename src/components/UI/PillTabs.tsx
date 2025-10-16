@@ -45,7 +45,7 @@ function TabPanel(props: {
     >
       {value === index && (
         <Box sx={{ p: 0 }}>
-          <Typography>{children}</Typography>
+          <Typography component="div">{children}</Typography>
         </Box>
       )}
     </div>
@@ -73,7 +73,7 @@ const PillTabs = ({ view1, view2 }: PillTabsInterface) => {
       <Tabs
         value={value}
         onChange={handleChange}
-        aria-label="pill tabs example"
+        aria-label="pill tabs"
         sx={{
           minHeight: 0,
           mb: 1,

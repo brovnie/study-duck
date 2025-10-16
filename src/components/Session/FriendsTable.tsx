@@ -1,6 +1,5 @@
 import {
   Avatar,
-  styled,
   Table,
   TableBody,
   TableCell,
