@@ -1,19 +1,25 @@
+"use client";
+import BackdropSession from "@/components/Session/BackdropSession";
 import Friends from "@/components/Session/Friends";
 import OnlineUsers from "@/components/Session/OnlineUsers";
+import CustomButton from "@/components/UI/Button";
 import CustomLink from "@/components/UI/Link";
 import PillTabs from "@/components/UI/PillTabs";
 import React from "react";
 
 const Sessions = () => {
+  const [isOpen, setIsOpen] = React.useState(true);
   return (
     <div className="w-full px-5 mt-5">
       <div className="flex flex-col bg-white rounded-md px-3 py-2">
         <div className="flex flex-row justify-between pb-1">
           <h2 className="text-2xl font-bold">Sessions</h2>
-          <CustomLink
-            href="/dashboard/sessions/new"
+          <CustomButton
             text="Start Session"
-            cssClass="w-auto flex items-center"
+            cssClasses="w-auto"
+            variant="primary"
+            type={"button"}
+            onClick={() => setIsOpen(true)}
             icon={
               <svg
                 width="25"
@@ -47,6 +53,7 @@ const Sessions = () => {
           }
         />
       </div>
+      <BackdropSession isOpen={isOpen} setIsOpen={setIsOpen} />
     </div>
   );
 };

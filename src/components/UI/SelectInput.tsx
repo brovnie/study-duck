@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent, SelectProps } from "@mui/material/Select";
@@ -45,23 +46,28 @@ const YellowLabel = styled(InputLabel)(({ theme }) => ({
 }));
 
 type SelectInputType = {
-  label: string;
+  label?: string;
   name: string;
   options: SelectOption[];
   onChange?: (event: SelectChangeEvent) => void;
+  defaultValue?: string;
+  hideLabel?: boolean;
 };
 const SelectInput = (props: SelectInputType) => {
   return (
     <FormControl fullWidth className="pt-10">
-      <YellowLabel shrink htmlFor={props.name} className={"text-lg"}>
-        {props.label}
-      </YellowLabel>
+      {!props.hideLabel && (
+        <YellowLabel shrink htmlFor={props.name} className={"text-lg"}>
+          {props.label}
+        </YellowLabel>
+      )}
       <BootstrapSelect
         label="Age"
         id={props.name}
         name={props.name}
         variant="outlined"
         onChange={props.onChange}
+        defaultValue={props.defaultValue}
       >
         {props.options.map((option) => (
           <MenuItem key={option.value} value={option.value}>

@@ -30,7 +30,7 @@ const Profile = () => {
         className="w-auto"
         sx={{
           position: "relative",
-          zIndex: 9999,
+          zIndex: 0,
           pointerEvents: "auto",
         }}
       >
