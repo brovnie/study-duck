@@ -1,5 +1,6 @@
 "use client";
 import BackdropSession from "@/components/Session/BackdropSession";
+import BigCalendar from "@/components/Session/BigCalendar";
 import Friends from "@/components/Session/Friends";
 import OnlineUsers from "@/components/Session/OnlineUsers";
 import CustomButton from "@/components/UI/Button";
@@ -48,7 +49,7 @@ const Sessions = () => {
           }
           view2={
             <div>
-              <p>Plan</p>
+              <BigCalendar />
             </div>
           }
         />
