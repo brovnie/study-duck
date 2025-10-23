@@ -7,8 +7,8 @@ import {
 } from "@mui/material";
 import Form from "next/form";
 import React from "react";
-import SelectInput from "../UI/SelectInput";
-import CustomButton from "../UI/Button";
+import SelectInput from "./SelectInput";
+import CustomButton from "./Button";
 
 type BackdropSessionType = {
   isOpen: boolean;

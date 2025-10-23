@@ -1,19 +1,19 @@
 "use client";
 import BackdropSession from "@/components/UI/BackdropSession";
-import BigCalendar from "@/components/UI/BigCalendar";
-import Friends from "@/components/Session/Friends";
 import OnlineUsers from "@/components/Session/OnlineUsers";
+import BigCalendar from "@/components/UI/BigCalendar";
 import CustomButton from "@/components/UI/Button";
 import PillTabs from "@/components/UI/PillTabs";
-import React from "react";
+import React, { useState } from "react";
+import AllSessions from "@/components/GroupSessions/AllSessions";
 
-const Sessions = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+const GroupSessions = () => {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="w-full px-5 mt-5">
       <div className="flex flex-col bg-white rounded-md px-3 py-2">
         <div className="flex flex-row justify-between pb-1">
-          <h2 className="text-2xl font-bold">Sessions</h2>
+          <h2 className="text-2xl font-bold">Group Sessions</h2>
           <CustomButton
             text="Start Session"
             cssClasses="w-auto"
@@ -42,8 +42,7 @@ const Sessions = () => {
         <PillTabs
           view1={
             <div>
-              <Friends />
-              <OnlineUsers />
+              <AllSessions />
             </div>
           }
           view2={
@@ -58,4 +57,4 @@ const Sessions = () => {
   );
 };
 
-export default Sessions;
+export default GroupSessions;
