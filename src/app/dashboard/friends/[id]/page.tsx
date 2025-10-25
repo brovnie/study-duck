@@ -16,7 +16,7 @@ const CustomIconButton = styled(IconButton)(({ theme }) => ({
 
 const FriendProfilePage = () => {
   return (
-    <div className="h-full w-full flex flex-col px-5">
+    <div className="h-full w-full flex flex-col gap-3">
       <SectionContainer>
         <div className="flex flex-col gap-5 items-center">
           <div className="flex flex-col w-full jusify-center gap-5 items-center relative">
