@@ -1,6 +1,7 @@
 "use client";
 import Sidebar from "@/components/Dashboard/sidebar/Sidebar";
 import TopBar from "@/components/Dashboard/TopBar";
+import Logo from "@/components/icons/Logo";
 import React, { JSX, ReactNode, useEffect } from "react";
 
 const PageWrapper = ({ children }: { children: ReactNode }): JSX.Element => {
@@ -15,7 +16,8 @@ const PageWrapper = ({ children }: { children: ReactNode }): JSX.Element => {
   }, []);
 
   return isMobile ? (
-    <div>
+    <div className="flex flex-col items-center justify-center h-screen">
+      <Logo />
       <p>This application works best on desktop</p>
     </div>
   ) : (
