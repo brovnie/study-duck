@@ -26,6 +26,7 @@ const ProfileAuth = () => {
           >
             <IconButton onClick={() => fileInputRef.current?.click()}>
               <Avatar
+                className="shadow-md"
                 style={{
                   margin: "10px",
                   width: "60px",
@@ -50,7 +51,16 @@ const ProfileAuth = () => {
             label="Name"
             className="w-[300px]"
           />
-          <div className="pt-6 pb-5">
+          <div className="pt-4">
+            <TextInput
+              type="text"
+              placeholder="High School"
+              id="input-name"
+              label="Where do you study?"
+              className="w-[300px]"
+            />
+          </div>
+          <div className="py-5">
             <TimezoneSelect />
           </div>
         </div>
