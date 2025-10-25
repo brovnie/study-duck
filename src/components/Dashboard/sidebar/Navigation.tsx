@@ -73,7 +73,7 @@ const Navigation = () => {
                   : " border-transparent")
               }
             >
-              Session
+              Sessions
             </span>
           </Link>
         </li>
@@ -127,8 +127,7 @@ const Navigation = () => {
                   : " border-transparent")
               }
             >
-              {" "}
-              Group Session
+              Group Sessions
             </span>
           </Link>
         </li>
@@ -155,12 +154,11 @@ const Navigation = () => {
             <span
               className={
                 "border-b-3 group-hover:border-amber-300 transition-all duration-300" +
-                (active === "/dashboard/friends"
+                (active.startsWith("/dashboard/friends")
                   ? " border-amber-300"
                   : " border-transparent")
               }
             >
-              {" "}
               Friends
             </span>
           </Link>
