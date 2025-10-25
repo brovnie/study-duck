@@ -1,6 +1,5 @@
 "use client";
 import BackdropSession from "@/components/UI/BackdropSession";
-import OnlineUsers from "@/components/Session/OnlineUsers";
 import BigCalendar from "@/components/UI/BigCalendar";
 import CustomButton from "@/components/UI/Button";
 import PillTabs from "@/components/UI/PillTabs";
