@@ -7,6 +7,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import { SelectOption } from "./UI/types";
 import moment from "moment-timezone";
 import { alpha, FormControl, InputLabel, styled } from "@mui/material";
+import { useState } from "react";
 
 const StyledAutocomplete = styled(Autocomplete<SelectOption>)(({ theme }) => ({
   "label + &": {
@@ -50,7 +51,13 @@ const YellowLabel = styled(InputLabel)(({ theme }) => ({
   left: -14,
 }));
 
-export default function TimezoneSelect() {
+type TimezoneSelectProps = {
+  defaultTimezone?: string | null;
+};
+
+export default function TimezoneSelect({
+  defaultTimezone = null,
+}: TimezoneSelectProps) {
   const [focused, setFocused] = React.useState(false);
 
   const timezones = moment.tz.names();
@@ -61,6 +68,14 @@ export default function TimezoneSelect() {
       label: `${timezone} (GMT${offset})`,
     };
   });
+
+  //default timezone option
+  const initialOption =
+    timezoneOptions.find((opt) => opt.value === defaultTimezone) ??
+    timezoneOptions[0];
+
+  const [value, setValue] = React.useState<SelectOption | null>(initialOption);
+
   return (
     <FormControl fullWidth>
       <YellowLabel
@@ -75,6 +90,7 @@ export default function TimezoneSelect() {
         sx={{ width: 300, height: 40 }}
         options={timezoneOptions}
         autoHighlight
+        value={value}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
         renderOption={(props, option) => {
@@ -96,7 +112,7 @@ export default function TimezoneSelect() {
             slotProps={{
               htmlInput: {
                 ...params.inputProps,
-                autoComplete: "new-password",
+                autoComplete: "timezone",
               },
             }}
           />
