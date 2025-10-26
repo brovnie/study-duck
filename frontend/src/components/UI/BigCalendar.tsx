@@ -4,6 +4,14 @@ import { Calendar, momentLocalizer, View, Views } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import moment from "moment";
 
+//Start weekday on Monday
+moment.locale("ko", {
+  week: {
+    dow: 1,
+    doy: 1,
+  },
+});
+
 const localizer = momentLocalizer(moment);
 
 const BigCalendar = () => {
@@ -11,7 +19,7 @@ const BigCalendar = () => {
   const [date, setDate] = useState(new Date());
   const calendarRef = useRef<HTMLDivElement>(null);
 
-  const data = [] as any;
+  const data: [] = [];
 
   /* 
     Scroll to current hour function 
