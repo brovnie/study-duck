@@ -3,7 +3,7 @@ import Chart from "./Chart";
 
 const Stats = () => {
   return (
-    <div className="bg-white p-5 rounded-md mt-3 flex-1">
+    <div className="bg-white p-5 rounded-md mt-3 flex-1 w-full">
       <div className="flex flex-row gap-10 pt-1 pb-2">
         <div className="flex flex-col flex-1 gap-3 bg-amber-300 p-5 rounded-md text-center">
           <p className="text-3xl font-bold">100</p>

@@ -19,7 +19,7 @@ const DashboardCalendar = () => {
   const year = activeStartDate.getFullYear();
 
   return (
-    <div className="bg-white p-5 rounded-md mt-3 h-min">
+    <div className="bg-white p-5 rounded-md mt-3 h-min w-fit">
       <div className="flex flex-row items-center justify-between mb-2">
         <p className="font-bold text-xl">
           {month} {year}
