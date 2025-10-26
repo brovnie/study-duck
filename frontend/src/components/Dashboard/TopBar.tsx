@@ -9,7 +9,7 @@ const CustomIconButton = styled(IconButton)(({ theme }) => ({
 
 const TopBar = () => {
   return (
-    <div className="flex flex-row items-center justify-between w-full px-5 mt-5">
+    <div className="flex flex-col md:flex-row items-center justify-between w-full px-5 mt-5">
       <div className="bg-white px-3 py-2 shadow-md rounded-lg">
         <div className="flex items-center gap-3">
           <p>

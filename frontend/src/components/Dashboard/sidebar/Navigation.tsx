@@ -12,16 +12,20 @@ const Navigation = () => {
   }, [pathname]);
 
   return (
-    <nav className="w-full pl-7 mb-5">
-      <ul className="uppercase w-full flex flex-col gap-4 justify-start items-start">
+    <nav className="w-full flex justify-center lg:block lg:pl-7 mb-5">
+      <ul className="uppercase w-full flex flex-col gap-6 lg:gap-4 justify-center items-center lg:justify-start items-start">
         <li className="w-full">
-          <Link href="/dashboard" className="flex flex-row gap-3 group w-full">
+          <Link
+            href="/dashboard"
+            className="flex flex-row justify-center lg:justify-start gap-3 group w-full"
+          >
             <svg
               width="24"
               height="24"
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              className="w-[34px] h-[34px] lg:w-[24px] lg:h-[24px]"
             >
               <path
                 d="M2.25 12L11.204 3.045C11.644 2.606 12.356 2.606 12.795 3.045L21.75 12M4.5 9.75V19.875C4.5 20.496 5.004 21 5.625 21H9.75V16.125C9.75 15.504 10.254 15 10.875 15H13.125C13.746 15 14.25 15.504 14.25 16.125V21H18.375C18.996 21 19.5 20.496 19.5 19.875V9.75M8.25 21H16.5"
@@ -34,7 +38,7 @@ const Navigation = () => {
 
             <span
               className={
-                "border-b-3 group-hover:border-amber-300 transition-all duration-300" +
+                "border-b-3 group-hover:border-amber-300 transition-all duration-300 hidden lg:block" +
                 (active === "/dashboard"
                   ? " border-amber-300"
                   : " border-transparent")
@@ -47,7 +51,7 @@ const Navigation = () => {
         <li className="w-full">
           <Link
             href="/dashboard/sessions"
-            className="group flex flex-row items-center gap-3"
+            className="group flex flex-row justify-center lg:justify-start  items-center gap-3"
           >
             <svg
               width="24"
@@ -55,6 +59,7 @@ const Navigation = () => {
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              className="w-[32px] h-[32px] lg:w-[24px] lg:h-[24px]"
             >
               <path
                 d="M15.75 10.5L20.47 5.78C20.5749 5.67524 20.7085 5.60392 20.8539 5.57503C20.9993 5.54615 21.15 5.561 21.2869 5.61771C21.4239 5.67442 21.541 5.77045 21.6234 5.89367C21.7058 6.01688 21.7499 6.16176 21.75 6.31V17.69C21.7499 17.8382 21.7058 17.9831 21.6234 18.1063C21.541 18.2295 21.4239 18.3256 21.2869 18.3823C21.15 18.439 20.9993 18.4538 20.8539 18.425C20.7085 18.3961 20.5749 18.3248 20.47 18.22L15.75 13.5M4.5 18.75H13.5C14.0967 18.75 14.669 18.5129 15.091 18.091C15.5129 17.669 15.75 17.0967 15.75 16.5V7.5C15.75 6.90326 15.5129 6.33097 15.091 5.90901C14.669 5.48705 14.0967 5.25 13.5 5.25H4.5C3.90326 5.25 3.33097 5.48705 2.90901 5.90901C2.48705 6.33097 2.25 6.90326 2.25 7.5V16.5C2.25 17.0967 2.48705 17.669 2.90901 18.091C3.33097 18.5129 3.90326 18.75 4.5 18.75Z"
@@ -67,7 +72,7 @@ const Navigation = () => {
 
             <span
               className={
-                "border-b-3 group-hover:border-amber-300 transition-all duration-300" +
+                "border-b-3 group-hover:border-amber-300 transition-all duration-300 hidden lg:block" +
                 (active === "/dashboard/sessions"
                   ? " border-amber-300"
                   : " border-transparent")
@@ -80,7 +85,7 @@ const Navigation = () => {
         <li className="w-full">
           <Link
             href="/dashboard/group-sessions"
-            className="group flex flex-row items-center gap-3"
+            className="group flex flex-row justify-center lg:justify-start  items-center gap-3"
           >
             <svg
               width="24"
@@ -88,6 +93,7 @@ const Navigation = () => {
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              className="w-[32px] h-[32px] lg:w-[24px] lg:h-[24px]"
             >
               <path
                 d="M15.75 10.25L20.47 5.53C20.5749 5.42524 20.7085 5.35392 20.8539 5.32503C20.9993 5.29615 21.15 5.311 21.2869 5.36771C21.4239 5.42442 21.541 5.52045 21.6234 5.64367C21.7058 5.76688 21.7499 5.91176 21.75 6.06V17.44C21.7499 17.5882 21.7058 17.7331 21.6234 17.8563C21.541 17.9795 21.4239 18.0756 21.2869 18.1323C21.15 18.189 20.9993 18.2038 20.8539 18.175C20.7085 18.1461 20.5749 18.0748 20.47 17.97L15.75 13.25M4.5 18.5H13.5C14.0967 18.5 14.669 18.2629 15.091 17.841C15.5129 17.419 15.75 16.8467 15.75 16.25V7.25C15.75 6.65326 15.5129 6.08097 15.091 5.65901C14.669 5.23705 14.0967 5 13.5 5H4.5C3.90326 5 3.33097 5.23705 2.90901 5.65901C2.48705 6.08097 2.25 6.65326 2.25 7.25V16.25C2.25 16.8467 2.48705 17.419 2.90901 17.841C3.33097 18.2629 3.90326 18.5 4.5 18.5Z"
@@ -121,7 +127,7 @@ const Navigation = () => {
             </svg>
             <span
               className={
-                "border-b-3 group-hover:border-amber-300 transition-all duration-300" +
+                "border-b-3 group-hover:border-amber-300 transition-all duration-300 hidden lg:block" +
                 (active === "/dashboard/group-sessions"
                   ? " border-amber-300"
                   : " border-transparent")
@@ -134,7 +140,7 @@ const Navigation = () => {
         <li className="w-full">
           <Link
             href="/dashboard/friends"
-            className="group flex flex-row items-center gap-3"
+            className="group flex flex-row justify-center lg:justify-start  items-center gap-3"
           >
             <svg
               width="24"
@@ -142,6 +148,7 @@ const Navigation = () => {
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              className="w-[32px] h-[32px] lg:w-[24px] lg:h-[24px]"
             >
               <path
                 d="M15 19.128C15.853 19.3757 16.7368 19.5009 17.625 19.5C19.0534 19.5021 20.4633 19.1764 21.746 18.548C21.7839 17.6517 21.5286 16.7675 21.0188 16.0293C20.509 15.2912 19.7724 14.7394 18.9207 14.4575C18.0691 14.1757 17.1487 14.1791 16.2992 14.4674C15.4497 14.7557 14.7173 15.313 14.213 16.055M15 19.128V19.125C15 18.012 14.714 16.965 14.213 16.055M15 19.128V19.234C13.0755 20.3931 10.8706 21.0038 8.62402 21C6.29302 21 4.11202 20.355 2.25002 19.234L2.24902 19.125C2.24826 17.7095 2.71864 16.3339 3.58601 15.2153C4.45338 14.0966 5.6684 13.2984 7.03951 12.9466C8.41063 12.5948 9.85985 12.7093 11.1587 13.2721C12.4575 13.8349 13.5321 14.814 14.213 16.055M12 6.375C12 7.27011 11.6444 8.12855 11.0115 8.76149C10.3786 9.39442 9.52013 9.75 8.62502 9.75C7.72992 9.75 6.87147 9.39442 6.23854 8.76149C5.6056 8.12855 5.25002 7.27011 5.25002 6.375C5.25002 5.47989 5.6056 4.62145 6.23854 3.98851C6.87147 3.35558 7.72992 3 8.62502 3C9.52013 3 10.3786 3.35558 11.0115 3.98851C11.6444 4.62145 12 5.47989 12 6.375ZM20.25 8.625C20.25 9.32119 19.9735 9.98887 19.4812 10.4812C18.9889 10.9734 18.3212 11.25 17.625 11.25C16.9288 11.25 16.2612 10.9734 15.7689 10.4812C15.2766 9.98887 15 9.32119 15 8.625C15 7.92881 15.2766 7.26113 15.7689 6.76884C16.2612 6.27656 16.9288 6 17.625 6C18.3212 6 18.9889 6.27656 19.4812 6.76884C19.9735 7.26113 20.25 7.92881 20.25 8.625Z"
@@ -153,7 +160,7 @@ const Navigation = () => {
             </svg>
             <span
               className={
-                "border-b-3 group-hover:border-amber-300 transition-all duration-300" +
+                "border-b-3 group-hover:border-amber-300 transition-all duration-300 hidden lg:block" +
                 (active.startsWith("/dashboard/friends")
                   ? " border-amber-300"
                   : " border-transparent")
@@ -166,7 +173,7 @@ const Navigation = () => {
         <li className="w-full">
           <Link
             href="/dashboard/calendar"
-            className="group flex flex-row items-center gap-3"
+            className="group flex flex-row justify-center lg:justify-start  items-center gap-3"
           >
             <svg
               width="24"
@@ -174,6 +181,7 @@ const Navigation = () => {
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              className="w-[32px] h-[32px] lg:w-[24px] lg:h-[24px]"
             >
               <path
                 d="M6.75 3V5.25M17.25 3V5.25M3 18.75V7.5C3 6.90326 3.23705 6.33097 3.65901 5.90901C4.08097 5.48705 4.65326 5.25 5.25 5.25H18.75C19.3467 5.25 19.919 5.48705 20.341 5.90901C20.7629 6.33097 21 6.90326 21 7.5V18.75M3 18.75C3 19.3467 3.23705 19.919 3.65901 20.341C4.08097 20.7629 4.65326 21 5.25 21H18.75C19.3467 21 19.919 20.7629 20.341 20.341C20.7629 19.919 21 19.3467 21 18.75M3 18.75V11.25C3 10.6533 3.23705 10.081 3.65901 9.65901C4.08097 9.23705 4.65326 9 5.25 9H18.75C19.3467 9 19.919 9.23705 20.341 9.65901C20.7629 10.081 21 10.6533 21 11.25V18.75"
@@ -185,7 +193,7 @@ const Navigation = () => {
             </svg>
             <span
               className={
-                "border-b-3 group-hover:border-amber-300 transition-all duration-300" +
+                "border-b-3 group-hover:border-amber-300 transition-all duration-300 hidden lg:block" +
                 (active === "/dashboard/calendar"
                   ? " border-amber-300"
                   : " border-transparent")
@@ -198,12 +206,13 @@ const Navigation = () => {
         <li className="w-full">
           <Link
             href="/dashboard/settings"
-            className="group flex flex-row items-center gap-3"
+            className="group flex flex-row justify-center lg:justify-start  items-center gap-3"
           >
             <svg
               width="24"
               height="24"
               viewBox="0 0 24 24"
+              className="w-[32px] h-[32px] lg:w-[24px] lg:h-[24px]"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
@@ -224,7 +233,7 @@ const Navigation = () => {
             </svg>
             <span
               className={
-                "border-b-3 group-hover:border-amber-300 transition-all duration-300" +
+                "border-b-3 group-hover:border-amber-300 transition-all duration-300 hidden lg:block" +
                 (active === "/dashboard/settings"
                   ? " border-amber-300"
                   : " border-transparent")

@@ -1,8 +1,9 @@
 "use client";
-import Sidebar from "@/components/Dashboard/sidebar/Sidebar";
-import TopBar from "@/components/Dashboard/TopBar";
-import Logo from "@/components/icons/Logo";
+
 import React, { JSX, ReactNode, useEffect } from "react";
+import Sidebar from "../../components/Dashboard/sidebar/Sidebar";
+import Logo from "@/components/icons/Logo";
+import TopBar from "@/components/Dashboard/TopBar";
 
 const PageWrapper = ({ children }: { children: ReactNode }): JSX.Element => {
   const [isMobile, setIsMobile] = React.useState<boolean | null>(null);
@@ -23,7 +24,7 @@ const PageWrapper = ({ children }: { children: ReactNode }): JSX.Element => {
   ) : (
     <div className="bg-amber-50 flex flex-row">
       <Sidebar />
-      <main className="flex flex-col flex-1items-center justify-center w-full h-full">
+      <main className="flex flex-col flex-1 items-center justify-center w-full h-full">
         <TopBar />
         {children}
       </main>

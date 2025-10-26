@@ -13,8 +13,8 @@ import CustomLink from "../UI/Link";
 
 const FriendsTable = () => {
   return (
-    <TableContainer>
-      <Table sx={{ minWidth: 700 }} aria-label="simple table">
+    <TableContainer className="overflow-x-scroll">
+      <Table aria-label="simple table">
         <TableHead>
           <TableRow className="bg-slate-100 rounded-t-md px-2">
             <TableCell className="rounded-tl-md">Profile</TableCell>

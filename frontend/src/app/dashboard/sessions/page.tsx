@@ -42,7 +42,6 @@ const Sessions = () => {
       <PillTabs
         view1={
           <div>
-            <Friends />
             <OnlineUsers />
           </div>
         }

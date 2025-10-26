@@ -6,8 +6,8 @@ import Navigation from "./Navigation";
 
 const Sidebar = () => {
   return (
-    <aside className="block min-w-[267px] h-screen relative">
-      <div className="fixed flex flex-col h-screen items-center bg-white shadow-xl pt-3">
+    <aside className="block min-w-[110px] lg:min-w-[267px] h-screen relative mr-3">
+      <div className="fixed flex flex-col h-screen items-center bg-white shadow-xl px-2 pt-3">
         <Logo />
         <Profile />
         <Navigation />
