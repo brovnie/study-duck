@@ -74,11 +74,11 @@ const Profile = () => {
               </div>
               <div className="flex flex-row items-center justify-between min-w-full">
                 <p className="uppercase">Points</p>
-                <p>1234</p>
+                <p>100</p>
               </div>
               <div className="flex flex-row items-center justify-between min-w-full">
                 <p className="uppercase">Sessions</p>
-                <p>1234</p>
+                <p>10</p>
               </div>
             </div>
             <CustomLink

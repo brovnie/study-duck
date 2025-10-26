@@ -51,7 +51,7 @@ const YellowLabel = styled(InputLabel)(({ theme }) => ({
 
 const TextInput = (props: TextInputInterface) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState(props.defaultValue ?? "");
 
   return (
     <FormControl variant="standard" className={props.className}>
