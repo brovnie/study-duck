@@ -1,3 +1,4 @@
+"use client";
 import {
   Avatar,
   Table,
@@ -5,16 +6,30 @@ import {
   TableCell,
   TableContainer,
   TableHead,
+  TablePagination,
   TableRow,
 } from "@mui/material";
 
-import React from "react";
+import React, { useState } from "react";
 import CustomLink from "../UI/Link";
 
 const FriendsTable = () => {
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
   return (
     <TableContainer>
-      <Table sx={{ minWidth: 700 }} aria-label="friends table">
+      <Table aria-label="friends table">
         <TableHead>
           <TableRow className="bg-slate-100 rounded-t-md px-2">
             <TableCell className="rounded-tl-md">Profile</TableCell>
@@ -98,6 +113,15 @@ const FriendsTable = () => {
           </TableRow>
         </TableBody>
       </Table>
+      <TablePagination
+        rowsPerPageOptions={[5, 10, 25]}
+        component="div"
+        count={1}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />
     </TableContainer>
   );
 };
