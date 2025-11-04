@@ -1,14 +1,13 @@
 import React from "react";
 import CardSwap, { Card } from "@/components/UI/CardSwap";
 import Image from "next/image";
-import CustomButton from "../UI/Button";
 import CustomLink from "../UI/Link";
 
 const Hero = () => {
   return (
     <div className="flex md:flex-row flex-col">
       <div className="flex flex-col gap-5 w-full md:w-2/3 h-[45vh] mb-5 md:h-screen items-center justify-center px-5 md:px-0">
-        <h1 className="text-4xl md:text-5xl md:-mt-[50px]">
+        <h1 className="text-4xl md:text-5xl md:-mt-[50px] ">
           Study Duck: Focus Together, Achieve More
         </h1>
         <p>

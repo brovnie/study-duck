@@ -1,6 +1,6 @@
 import React from "react";
 import { Ruluko } from "next/font/google";
-const robotoMono = Ruluko({
+const ruloko = Ruluko({
   subsets: ["latin"],
   weight: ["400"],
   display: "swap",
@@ -23,7 +23,7 @@ const Logo = () => {
         />
       </svg>
       <p
-        className={`${robotoMono.className} text-[14px] uppercase hidden md:block`}
+        className={`${ruloko.className} text-[14px] uppercase hidden md:block`}
       >
         Study Duck
       </p>
