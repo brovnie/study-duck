@@ -1,0 +1,21 @@
+{
+  "name": "study-duck-backend",
+  "version": "1.0.0",
+  "description": "Backedn for study duck webapp",
+  "license": "ISC",
+  "author": "brovnie",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "start:dev": "NODE_END=development nodemon server.js",
+    "start:prod": "NODE_END=production nodemon server.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "mongodb": "^7.0.0",
+    "mongoose": "^8.19.3"
+  }
+}
