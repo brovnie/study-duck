@@ -5,10 +5,7 @@ import CustomButton from "../UI/Button";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCreateUser } from "@/hooks/mutations/useCreateUser";
 import ErrorMessage from "../UI/ErrorMessage";
-
-interface AppErrorType extends Error {
-  input?: string;
-}
+import { AppErrorType, UserAuthProps } from "./types";
 
 const UserAuth = () => {
   const searchParams = useSearchParams();
@@ -30,10 +27,20 @@ const UserAuth = () => {
     const formData = new FormData(e.currentTarget);
     const email = formData.get("email");
     const password = formData.get("password");
+
+    if (!email || !password) {
+      setError({
+        message: "Please fill in all fields",
+        input: "both",
+      });
+      setIsLoading(false);
+      return;
+    }
+
     createUser.mutate(
       { email, password },
       {
-        onSuccess: (data: any) => {
+        onSuccess: (data: UserAuthProps) => {
           console.log("User created successfully:", data);
           form.reset();
           router.push("/auth/profile");
@@ -70,15 +77,15 @@ const UserAuth = () => {
               placeholder="joe.doe@email.com"
               id="input-email"
               label="Email"
-              error={error?.input === "email"}
+              error={error?.input === "email" || error?.input === "both"}
             />
             <TextInput
               type="password"
-              placeholder="******"
+              placeholder="********"
               name="password"
               id="input-password"
               label="Password"
-              error={error?.input === "password"}
+              error={error?.input === "password" || error?.input === "both"}
             />
           </div>
           <CustomButton
