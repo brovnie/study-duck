@@ -21,5 +21,5 @@ export const createUser = async (data: {
     throw responseData;
   }
 
-  return response.json();
+  return responseData;
 };

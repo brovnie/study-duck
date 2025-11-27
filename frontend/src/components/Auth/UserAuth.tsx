@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import TextInput from "../UI/TextInput";
 import CustomButton from "../UI/Button";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useCreateUser } from "@/hooks/mutations/useCreateUser";
 import ErrorMessage from "../UI/ErrorMessage";
 
@@ -15,15 +15,18 @@ const UserAuth = () => {
   const signup = searchParams.get("signup");
   const [isSignIn, setisSignIn] = useState(signup === "true" ? false : true);
   const createUser = useCreateUser();
-  const [error, setError] = useState<null | { message: string; input: string }>(
-    null
-  );
-
-  console.log(error);
+  const [error, setError] = useState<null | {
+    message: string;
+    input: string | undefined;
+  }>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(null);
+    setIsLoading(true);
+    const form = e.currentTarget;
     const formData = new FormData(e.currentTarget);
     const email = formData.get("email");
     const password = formData.get("password");
@@ -32,6 +35,8 @@ const UserAuth = () => {
       {
         onSuccess: (data: any) => {
           console.log("User created successfully:", data);
+          form.reset();
+          router.push("/auth/profile");
         },
         onError: (error) => {
           const err = error as AppErrorType;
@@ -39,11 +44,11 @@ const UserAuth = () => {
             message: err.message,
             input: err.input,
           });
+          setIsLoading(false);
           console.error("Error creating user:", error);
         },
       }
     );
-    e.currentTarget.reset();
   };
 
   return (
@@ -78,9 +83,10 @@ const UserAuth = () => {
           </div>
           <CustomButton
             variant="primary"
-            text={isSignIn ? "Sign In" : "Sign Up"}
+            text={isLoading ? "Loading..." : isSignIn ? "Sign In" : "Sign Up"}
             type="submit"
-            cssClasses="w-[325px]"
+            disabled={isLoading}
+            cssClasses={`w-[325px] ${isLoading ? "opacity-50" : ""}`}
           />
         </form>
       </div>
