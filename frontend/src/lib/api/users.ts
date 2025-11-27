@@ -1,4 +1,3 @@
-"use client";
 export const createUser = async (data: {
   email: FormDataEntryValue | null;
   password: FormDataEntryValue | null;
