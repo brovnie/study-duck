@@ -1,7 +1,7 @@
 {
   "name": "study-duck-backend",
   "version": "1.0.0",
-  "description": "Backedn for study duck webapp",
+  "description": "Backend for study duck webapp",
   "license": "ISC",
   "author": "brovnie",
   "type": "commonjs",
@@ -13,8 +13,11 @@
     "start:prod": "NODE_END=production nodemon server.js"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
     "mongodb": "^7.0.0",
     "mongoose": "^8.19.3",
     "validator": "^13.15.23"

@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
+const bcrypt = require("bcryptjs");
 
 const userSchema = new mongoose.Schema({
   email: {
@@ -23,7 +24,7 @@ const userSchema = new mongoose.Schema({
     maxlength: [128, "Name must be less than 128 characters"],
     required: [true, "Please provide a name"],
     trim: true,
-    select: false,
+    default: "Unknown",
   },
   profilePic: {
     type: String,
@@ -35,11 +36,19 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide a time zone"],
     trim: true,
+    default: "UTC",
   },
   accountCompleted: {
     type: Boolean,
     default: false,
   },
+});
+
+userSchema.pre("save", function (next) {
+  if (!this.isModified("password")) return next();
+
+  this.password = bcrypt.hashSync(this.password, 12);
+  next();
 });
 
 const User = mongoose.model("User", userSchema);

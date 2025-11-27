@@ -15,6 +15,7 @@ interface TextInputInterface {
   defaultValue?: string;
   className?: string;
   hideLabel?: boolean;
+  name?: string; //TODO: delete ? after adjusting all text inputs
 }
 
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
@@ -51,7 +52,6 @@ const YellowLabel = styled(InputLabel)(({ theme }) => ({
 
 const TextInput = (props: TextInputInterface) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const [inputValue, setInputValue] = useState(props.defaultValue ?? "");
 
   return (
     <FormControl variant="standard" className={props.className}>
@@ -62,17 +62,20 @@ const TextInput = (props: TextInputInterface) => {
       )}
       <BootstrapInput
         type={isPasswordVisible ? "text" : props.type}
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
         placeholder={props.placeholder}
         id={props.id}
         className="group"
+        name={props.name}
         endAdornment={
           props.type === "password" && (
             <InputAdornment
               position="end"
               className="absolute right-2 cursor-pointer group-focus-within:text-amber-300"
-              onClick={() => setIsPasswordVisible((prev) => !prev)}
+              onClick={(e: React.MouseEvent<HTMLElement>) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setIsPasswordVisible((prev) => !prev);
+              }}
             >
               <EyeIcon isOpen={isPasswordVisible} />
             </InputAdornment>

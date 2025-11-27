@@ -6,6 +6,8 @@ import theme from "./theme";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Providers } from "./providers";
 
 const robotoMono = Roboto_Mono({
   subsets: ["latin"],
@@ -20,6 +22,7 @@ export const metadata: Metadata = {
     "Join real-time video study sessions, stay accountable, earn points, and unlock new study partners along the way.",
 };
 
+export const queryClient = new QueryClient();
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -28,14 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${robotoMono.variable} antialiased overflow-x-hidden`}>
-        <AppRouterCacheProvider
-          options={{ enableCssLayer: false, prepend: true }}
-        >
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            {children}
-          </ThemeProvider>
-        </AppRouterCacheProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
