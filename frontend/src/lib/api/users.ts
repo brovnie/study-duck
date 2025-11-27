@@ -15,8 +15,10 @@ export const createUser = async (data: {
     }),
   });
 
+  const responseData = await response.json();
+
   if (!response.ok) {
-    throw new Error("Failed to create user");
+    throw responseData;
   }
 
   return response.json();

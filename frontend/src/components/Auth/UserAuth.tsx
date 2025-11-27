@@ -4,15 +4,26 @@ import TextInput from "../UI/TextInput";
 import CustomButton from "../UI/Button";
 import { useSearchParams } from "next/navigation";
 import { useCreateUser } from "@/hooks/mutations/useCreateUser";
+import ErrorMessage from "../UI/ErrorMessage";
+
+interface AppErrorType extends Error {
+  input?: string;
+}
 
 const UserAuth = () => {
   const searchParams = useSearchParams();
   const signup = searchParams.get("signup");
   const [isSignIn, setisSignIn] = useState(signup === "true" ? false : true);
   const createUser = useCreateUser();
+  const [error, setError] = useState<null | { message: string; input: string }>(
+    null
+  );
+
+  console.log(error);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setError(null);
     const formData = new FormData(e.currentTarget);
     const email = formData.get("email");
     const password = formData.get("password");
@@ -22,14 +33,17 @@ const UserAuth = () => {
         onSuccess: (data: any) => {
           console.log("User created successfully:", data);
         },
-        onError: (error: any) => {
-          console.error("Error creating user:", error.message);
+        onError: (error) => {
+          const err = error as AppErrorType;
+          setError({
+            message: err.message,
+            input: err.input,
+          });
+          console.error("Error creating user:", error);
         },
       }
     );
-
-    formData.delete("email");
-    formData.delete("password");
+    e.currentTarget.reset();
   };
 
   return (
@@ -39,6 +53,11 @@ const UserAuth = () => {
           Sign {isSignIn ? "In" : "Up"}
         </p>
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+          {error && (
+            <div className="max-w-[325px]">
+              <ErrorMessage message={error.message} />
+            </div>
+          )}
           <div className="flex flex-col gap-3 w-[325px]">
             <TextInput
               type="email"
@@ -46,6 +65,7 @@ const UserAuth = () => {
               placeholder="joe.doe@email.com"
               id="input-email"
               label="Email"
+              error={error?.input === "email"}
             />
             <TextInput
               type="password"
@@ -53,6 +73,7 @@ const UserAuth = () => {
               name="password"
               id="input-password"
               label="Password"
+              error={error?.input === "password"}
             />
           </div>
           <CustomButton

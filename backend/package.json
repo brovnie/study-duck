@@ -9,8 +9,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "start:dev": "NODE_END=development nodemon server.js",
-    "start:prod": "NODE_END=production nodemon server.js"
+    "start:dev": "NODE_ENV=development nodemon server.js",
+    "start:prod": "NODE_ENV=production nodemon server.js"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",

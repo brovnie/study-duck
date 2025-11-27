@@ -16,9 +16,12 @@ interface TextInputInterface {
   className?: string;
   hideLabel?: boolean;
   name?: string; //TODO: delete ? after adjusting all text inputs
+  error?: boolean;
 }
 
-const BootstrapInput = styled(InputBase)(({ theme }) => ({
+const BootstrapInput = styled(InputBase, {
+  shouldForwardProp: (prop) => prop !== "error",
+})<{ error?: boolean }>(({ theme, error }) => ({
   "label + &": {
     marginTop: theme.spacing(3.5),
   },
@@ -27,7 +30,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     position: "relative",
     backgroundColor: "white",
     border: "1px solid",
-    borderColor: "var(--color-slate-400)",
+    borderColor: error ? "var(--color-red-500)" : "var(--color-slate-400)",
     fontSize: 14,
     width: "100%",
     padding: "10px 35px 10px 12px",
@@ -66,6 +69,7 @@ const TextInput = (props: TextInputInterface) => {
         id={props.id}
         className="group"
         name={props.name}
+        error={props.error}
         endAdornment={
           props.type === "password" && (
             <InputAdornment
