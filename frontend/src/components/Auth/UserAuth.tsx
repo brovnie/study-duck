@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TextInput from "../UI/TextInput";
 import CustomButton from "../UI/Button";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -101,7 +101,10 @@ const UserAuth = () => {
         {isSignIn ? "Don't have an account? " : "Already have an account? "}
 
         <span
-          onClick={() => setisSignIn((prev) => !prev)}
+          onClick={() => {
+            setisSignIn((prev) => !prev);
+            router.push(`/auth?signup=${isSignIn}`);
+          }}
           className="font-semibold border-b-2 mb-5 cursor-pointer hover:text-amber-300"
         >
           {isSignIn ? "Sign Up!" : "Sign In!"}
