@@ -70,7 +70,11 @@ const Navigation = () => {
               </a>
             </li>
             <li className="px-1">
-              <CustomLink href="/auth" text="Sign In" variant="secondary" />
+              <CustomLink
+                href="/auth?signup=false"
+                text="Sign In"
+                variant="secondary"
+              />
             </li>
             <li className="px-1">
               <CustomLink href="/auth?signup=true" text="Sign Up" />
