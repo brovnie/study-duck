@@ -19,7 +19,7 @@ const EditUserProfile = ({ setIsEdyting }: EditUserProfilePropsTypes) => {
         id="name"
         label="Name"
         placeholder="Enter your name"
-        defaultValue="Marlena Marlena"
+        defaultValue="Marlena"
         className="w-[300px]"
       />
       <div>

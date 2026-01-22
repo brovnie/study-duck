@@ -1,6 +1,7 @@
 import { jwtDecode } from "jwt-decode";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { getUserById } from "./lib/api/users";
 
 interface JWTTokensInterface {
   id: string;
@@ -11,6 +12,7 @@ interface JWTTokensInterface {
 export async function middleware(req: NextRequest) {
   const token = req.cookies.get("token")?.value;
   const url = "/auth?signup=false";
+  console.log("token is", token);
   if (!token) {
     return NextResponse.redirect(new URL(url, req.url));
   }
@@ -22,6 +24,12 @@ export async function middleware(req: NextRequest) {
       return NextResponse.redirect(new URL(url, req.url));
     }
     if (!decoded.id) {
+      return NextResponse.redirect(new URL(url, req.url));
+    }
+
+    const user = await getUserById(decoded.id);
+
+    if (!user) {
       return NextResponse.redirect(new URL(url, req.url));
     }
   } catch (err) {

@@ -64,7 +64,7 @@ const Profile = () => {
             <Link href="/dashboard/profile">
               <Avatar className="shadow-md border-2 border-white" />
             </Link>
-            <p className="text-md font-bold ">Marlena Marlena</p>
+            <p className="text-md font-bold ">Marlena</p>
           </AccordionSummary>
           <AccordionDetails className="w-full flex flex-col gap-3 items-center">
             <div className="flex flex-col gap-3 items-center bg-white rounded-md w-full">
