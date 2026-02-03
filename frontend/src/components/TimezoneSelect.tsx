@@ -7,7 +7,6 @@ import Autocomplete from "@mui/material/Autocomplete";
 import { SelectOption } from "./UI/types";
 import moment from "moment-timezone";
 import { alpha, FormControl, InputLabel, styled } from "@mui/material";
-import { useState } from "react";
 
 const StyledAutocomplete = styled(Autocomplete<SelectOption>)(({ theme }) => ({
   "label + &": {
@@ -70,9 +69,14 @@ export default function TimezoneSelect({
   });
 
   //default timezone option
+  // Parent
   const initialOption =
     timezoneOptions.find((opt) => opt.value === defaultTimezone) ??
     timezoneOptions[0];
+
+  const [timezone, setTimezone] = React.useState<SelectOption | null>(
+    initialOption
+  );
 
   const [value, setValue] = React.useState<SelectOption | null>(initialOption);
 
@@ -86,13 +90,14 @@ export default function TimezoneSelect({
         Time zone
       </YellowLabel>
       <StyledAutocomplete
-        id="country-select-demo"
+        id="country-select"
         sx={{ width: 300, height: 40 }}
         options={timezoneOptions}
         autoHighlight
         value={value}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
+        onChange={(_, newValue) => setValue(newValue)}
         renderOption={(props, option) => {
           const { key, ...optionProps } = props;
           return (
@@ -109,6 +114,7 @@ export default function TimezoneSelect({
         renderInput={(params) => (
           <TextField
             {...params}
+            name="country"
             slotProps={{
               htmlInput: {
                 ...params.inputProps,
