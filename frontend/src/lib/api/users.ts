@@ -34,16 +34,6 @@ export const createUser = async (data: {
 };
 
 //
-// Create profile
-export const createProfile = async (data: {
-  avatar: FormDataEntryValue | null;
-  name: FormDataEntryValue | null;
-  school: FormDataEntryValue | null;
-  country: FormDataEntryValue | null;
-
-})
-
-//
 // Get user by ID
 export const getUserById = async (id: string) => {
   const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}users/${id}`;

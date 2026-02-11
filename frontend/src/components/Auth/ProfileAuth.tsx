@@ -1,20 +1,19 @@
 "use client";
-import Avatar from "@mui/material/Avatar";
-import IconButton from "@mui/material/IconButton";
 import React, { useState } from "react";
 import CustomButton from "../UI/Button";
 import TextInput from "../UI/TextInput";
 import TimezoneSelect from "../TimezoneSelect";
 import ErrorMessage from "../UI/ErrorMessage";
+import AvatarUpload from "../UI/AvatarUpload";
 import { useMutation } from "@tanstack/react-query";
 import { useAvatarSignature } from "@/hooks/queries/useAvatarSignature";
 
 const ProfileAuth = () => {
-  const fileInputRef = React.useRef<HTMLInputElement>(null);
   const [error, setError] = useState<null | {
     message: string;
     input: string | undefined;
   }>(null);
+  const [resetImg, setResetImg] = React.useState(false);
   const { data: signature } = useAvatarSignature();
 
   const uploadAvatarMutation = useMutation({
@@ -50,7 +49,7 @@ const ProfileAuth = () => {
     const name = form.get("name");
     const school = form.get("school");
     const timezone = form.get("country");
-
+    console.log(typeof school);
     if (!name && !school && !file) {
       setError({
         message: "Please fill in all fields",
@@ -58,6 +57,7 @@ const ProfileAuth = () => {
       });
       return;
     }
+    console.log(!school);
     if (!name) {
       setError({
         message: "Please fill in name",
@@ -77,9 +77,10 @@ const ProfileAuth = () => {
       });
       return;
     }
+    //const image = uploadAvatarMutation.data.secure_url;
 
-    //upload file
-    console.log(uploadAvatarMutation.data.secure_url);
+    //Clean up image url after upload TODO: move to on success
+    setResetImg((prev) => !prev);
   };
 
   return (
@@ -93,39 +94,7 @@ const ProfileAuth = () => {
             <ErrorMessage message={error.message} />
           </div>
         )}
-        <div className="pb-2">
-          <input
-            accept="image/*"
-            className={"hidden"}
-            id="contained-button-file"
-            name="avatar"
-            multiple
-            type="file"
-            ref={fileInputRef}
-          />
-          <label
-            htmlFor="contained-button-file"
-            className="flex flex-col gap-1 items-center"
-          >
-            <IconButton onClick={() => fileInputRef.current?.click()}>
-              <Avatar
-                className="shadow-md"
-                style={{
-                  margin: "10px",
-                  width: "60px",
-                  height: "60px",
-                }}
-              />
-            </IconButton>
-            <CustomButton
-              onClick={() => fileInputRef.current?.click()}
-              variant="secondary"
-              text="Upload"
-              type="button"
-              cssClasses="w-auto w-min"
-            />
-          </label>
-        </div>
+        <AvatarUpload resetImage={resetImg} />
         <div>
           <TextInput
             type="text"
