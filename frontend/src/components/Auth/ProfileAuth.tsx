@@ -49,26 +49,27 @@ const ProfileAuth = () => {
     const name = form.get("name");
     const school = form.get("school");
     const timezone = form.get("country");
-    console.log(typeof school);
-    if (!name && !school && !file) {
+
+    if (!name && !school && (!(file instanceof File) || file.size === 0)) {
       setError({
-        message: "Please fill in all fields",
+        message: "Please complete the form.",
         input: "all",
       });
       return;
     }
-    console.log(!school);
     if (!name) {
       setError({
         message: "Please fill in name",
         input: "name",
       });
+      return;
     }
     if (!school) {
       setError({
         message: "Please fill in school",
         input: "school",
       });
+      return;
     }
     if (!(file instanceof File) || file.size === 0) {
       setError({
@@ -77,7 +78,7 @@ const ProfileAuth = () => {
       });
       return;
     }
-    //const image = uploadAvatarMutation.data.secure_url;
+    const image = uploadAvatarMutation.data.secure_url;
 
     //Clean up image url after upload TODO: move to on success
     setResetImg((prev) => !prev);
