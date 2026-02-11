@@ -34,6 +34,40 @@ export const createUser = async (data: {
 };
 
 //
+// Create a new user profile
+export const createUserProfile = async (data: {
+  id: string;
+  name: FormDataEntryValue | null;
+  school: FormDataEntryValue | null;
+  timezone: FormDataEntryValue | null;
+  image: string | null;
+}) => {
+  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}users/signup/profile`;
+
+  const response = await fetch(url, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      id: data.id,
+      name: data.name,
+      school: data.school,
+      timezone: data.timezone,
+      image: data.image,
+    }),
+  });
+
+  const responseData = await response.json();
+
+  if (!response.ok) {
+    throw responseData;
+  }
+
+  return responseData;
+};
+
+//
 // Get user by ID
 export const getUserById = async (id: string) => {
   const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}users/${id}`;

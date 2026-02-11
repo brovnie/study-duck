@@ -25,3 +25,23 @@ exports.signup = async (req, res, next) => {
     },
   });
 };
+
+exports.singUpProfile = async (req, res, next) => {
+  const updateUser = await User.findByIdAndUpdate(
+    req.body.id,
+    {
+      name: req.body.name,
+      school: req.body.school,
+      timeZone: req.body.timezone,
+      profilePic: req.body.image,
+      accountCompleted: true,
+    },
+    { new: true }
+  );
+  res.status(200).json({
+    status: "success",
+    data: {
+      user: updateUser,
+    },
+  });
+};

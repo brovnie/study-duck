@@ -7,19 +7,23 @@ import ErrorMessage from "../UI/ErrorMessage";
 import AvatarUpload from "../UI/AvatarUpload";
 import { useMutation } from "@tanstack/react-query";
 import { useAvatarSignature } from "@/hooks/queries/useAvatarSignature";
+import { useCreateUserProfile } from "@/hooks/mutations/useCreateProfile";
+import { AppErrorType } from "./types";
+import { useRouter } from "next/navigation";
 
-const ProfileAuth = () => {
+const ProfileAuth = (userId: { userId: string }) => {
   const [error, setError] = useState<null | {
     message: string;
     input: string | undefined;
   }>(null);
   const [resetImg, setResetImg] = React.useState(false);
   const { data: signature } = useAvatarSignature();
+  const createUserProfile = useCreateUserProfile();
+  const router = useRouter();
 
   const uploadAvatarMutation = useMutation({
     mutationFn: async (file: File) => {
       if (!signature) throw new Error("No signature");
-      console.log(signature);
       const formData = new FormData();
       formData.append("file", file);
       formData.append("api_key", signature.apiKey);
@@ -41,10 +45,11 @@ const ProfileAuth = () => {
     },
   });
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const form = new FormData(e.currentTarget);
+    const target = e.currentTarget;
+    const form = new FormData(target);
     const file = form.get("avatar");
     const name = form.get("name");
     const school = form.get("school");
@@ -78,10 +83,43 @@ const ProfileAuth = () => {
       });
       return;
     }
-    const image = uploadAvatarMutation.data.secure_url;
+    const uploadResponse = await uploadAvatarMutation.mutateAsync(file);
 
-    //Clean up image url after upload TODO: move to on success
-    setResetImg((prev) => !prev);
+    if (!uploadResponse || !uploadResponse.secure_url) {
+      setError({
+        message: "Failed to upload image",
+        input: "avatar",
+      });
+      return;
+    }
+    const image = uploadResponse.secure_url;
+
+    await createUserProfile.mutate(
+      {
+        id: userId.userId,
+        image: image,
+        name: name,
+        school: school,
+        timezone: timezone,
+      },
+      {
+        onSuccess: (data) => {
+          console.log("User profile created successfully:", data);
+          setResetImg((prev) => !prev);
+          target.reset();
+          router.push("/dashboard");
+        },
+        onError: (error) => {
+          setResetImg((prev) => !prev);
+          const err = error as AppErrorType;
+          setError({
+            message: err.message,
+            input: err.input,
+          });
+          console.error("Error creating user profile:", error);
+        },
+      }
+    );
   };
 
   return (

@@ -9,6 +9,7 @@ router.get("/", userController.getAllUsers);
 router.get("/:id", userController.getUserById);
 
 router.post("/signup", authController.signup);
+router.patch("/signup/profile", authController.singUpProfile);
 router.post("/avatar-signature", uploadController.avatarSignature);
 
 module.exports = router;
