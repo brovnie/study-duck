@@ -75,10 +75,10 @@ module.exports = (err, req, res, next) => {
     (err.statusCode >= 400 && err.statusCode < 500 ? "fail" : "error");
 
   if (process.env.NODE_ENV === "development") {
-    console.log("dev");
+    console.log("Environment: development");
     sendErrorDev(err, res);
   } else if (process.env.NODE_ENV === "production") {
-    console.log("prod");
+    console.log("Environment: production");
     let error = { ...err };
     if (err.name === "CastError") {
       error = handleCastError(err);
