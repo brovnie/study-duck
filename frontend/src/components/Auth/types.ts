@@ -7,11 +7,13 @@ export interface UserAuthProps {
   token: string;
   data: {
     user: {
-      accountCompleted: boolean;
-      email: string;
-      name: string;
-      timezone: string;
       id: string;
+      name: string;
+      email?: string;
+      timezone?: string;
+      school?: string;
+      profilePic?: string;
+      accountCompleted: boolean;
     };
   };
 }

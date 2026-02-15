@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import TextInput from "../UI/TextInput";
 import CustomButton from "../UI/Button";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -39,7 +39,6 @@ const UserAuth = () => {
       return;
     }
     if (isSignIn) {
-      console.log("Signing in...");
       loginUser.mutate(
         {
           email,
@@ -47,14 +46,6 @@ const UserAuth = () => {
         },
         {
           onSuccess: (data: UserAuthProps) => {
-            console.log("User logged in successfully:", data);
-            if (data.token) {
-              document.cookie = `token=${data.token}; path=/; max-age=${
-                60 * 60 * 24
-              }; secure; samesite=lax`;
-            }
-            form.reset();
-            setIsLoading(false);
             router.push("/dashboard");
           },
           onError: (error) => {
@@ -63,8 +54,11 @@ const UserAuth = () => {
               message: err.message,
               input: err.input,
             });
-            setIsLoading(false);
             console.error("Error login user:", error);
+          },
+          onSettled: () => {
+            setIsLoading(false);
+            form.reset();
           },
         }
       );

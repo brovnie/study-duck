@@ -6,6 +6,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import { Avatar, styled } from "@mui/material";
 import CustomLink from "../../UI/Link";
 import Link from "next/link";
+import { useUser } from "@/context/UserContext";
 
 const CustomAccordion = styled(Accordion)(({ theme }) => ({
   "& .MuiAccordionSummary-root": {
@@ -23,7 +24,9 @@ const CustomAccordion = styled(Accordion)(({ theme }) => ({
     padding: 0,
   },
 }));
+
 const Profile = () => {
+  const { user } = useUser();
   return (
     <div className="w-full px-4 mt-3 mb-5">
       <div className="hidden lg:block">
@@ -62,9 +65,12 @@ const Profile = () => {
             id="panel1-header"
           >
             <Link href="/dashboard/profile">
-              <Avatar className="shadow-md border-2 border-white" />
+              <Avatar
+                className="shadow-md border-2 border-white"
+                src={user?.profilePic}
+              />
             </Link>
-            <p className="text-md font-bold ">Marlena</p>
+            <p className="text-md font-bold ">{user?.name}</p>
           </AccordionSummary>
           <AccordionDetails className="w-full flex flex-col gap-3 items-center">
             <div className="flex flex-col gap-3 items-center bg-white rounded-md w-full">

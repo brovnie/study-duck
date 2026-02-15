@@ -94,6 +94,25 @@ export const loginUser = async (data: {
 
   return responseData;
 };
+
+//Get current user based on token
+export const getCurrentUser = async () => {
+  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}users/me`;
+
+  const response = await fetch(url, {
+    method: "GET",
+    credentials: "include",
+  });
+
+  const responseData = await response.json();
+
+  if (!response.ok) {
+    throw responseData;
+  }
+
+  return responseData;
+};
+
 //
 // Get user by ID
 export const getUserById = async (id: string) => {
