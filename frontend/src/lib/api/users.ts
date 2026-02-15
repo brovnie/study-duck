@@ -68,6 +68,33 @@ export const createUserProfile = async (data: {
 };
 
 //
+// Sign in a user
+export const loginUser = async (data: {
+  email: FormDataEntryValue | null;
+  password: FormDataEntryValue | null;
+}) => {
+  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}users/signin`;
+
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email: data.email,
+      password: data.password,
+    }),
+  });
+
+  const responseData = await response.json();
+
+  if (!response.ok) {
+    throw responseData;
+  }
+
+  return responseData;
+};
+//
 // Get user by ID
 export const getUserById = async (id: string) => {
   const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}users/${id}`;

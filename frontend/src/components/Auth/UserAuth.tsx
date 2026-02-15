@@ -6,12 +6,14 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useCreateUser } from "@/hooks/mutations/useCreateUser";
 import ErrorMessage from "../UI/ErrorMessage";
 import { AppErrorType, UserAuthProps } from "./types";
+import { useLoginUser } from "@/hooks/mutations/useLoginUser";
 
 const UserAuth = () => {
   const searchParams = useSearchParams();
   const signup = searchParams.get("signup");
   const [isSignIn, setisSignIn] = useState(signup === "true" ? false : true);
   const createUser = useCreateUser();
+  const loginUser = useLoginUser();
   const [error, setError] = useState<null | {
     message: string;
     input: string | undefined;
@@ -36,32 +38,64 @@ const UserAuth = () => {
       setIsLoading(false);
       return;
     }
-
-    createUser.mutate(
-      { email, password },
-      {
-        onSuccess: (data: UserAuthProps) => {
-          console.log("User created successfully:", data);
-
-          if (data.token) {
-            document.cookie = `token=${data.token}; path=/; max-age=${
-              60 * 60 * 24
-            }; secure; samesite=lax`;
-          }
-          form.reset();
-          router.push("/auth/profile");
+    if (isSignIn) {
+      console.log("Signing in...");
+      loginUser.mutate(
+        {
+          email,
+          password,
         },
-        onError: (error) => {
-          const err = error as AppErrorType;
-          setError({
-            message: err.message,
-            input: err.input,
-          });
-          setIsLoading(false);
-          console.error("Error creating user:", error);
-        },
-      }
-    );
+        {
+          onSuccess: (data: UserAuthProps) => {
+            console.log("User created successfully:", data);
+            if (data.token) {
+              document.cookie = `token=${data.token}; path=/; max-age=${
+                60 * 60 * 24
+              }; secure; samesite=lax`;
+            }
+            form.reset();
+            setIsLoading(false);
+            router.push("/dashboard");
+          },
+          onError: (error) => {
+            const err = error as AppErrorType;
+            setError({
+              message: err.message,
+              input: err.input,
+            });
+            setIsLoading(false);
+            console.error("Error login user:", error);
+          },
+        }
+      );
+    } else {
+      createUser.mutate(
+        { email, password },
+        {
+          onSuccess: (data: UserAuthProps) => {
+            console.log("User created successfully:", data);
+
+            if (data.token) {
+              document.cookie = `token=${data.token}; path=/; max-age=${
+                60 * 60 * 24
+              }; secure; samesite=lax`;
+            }
+            form.reset();
+            setIsLoading(false);
+            router.push("/auth/profile");
+          },
+          onError: (error) => {
+            const err = error as AppErrorType;
+            setError({
+              message: err.message,
+              input: err.input,
+            });
+            setIsLoading(false);
+            console.error("Error creating user:", error);
+          },
+        }
+      );
+    }
   };
 
   return (

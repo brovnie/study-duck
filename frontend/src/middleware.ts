@@ -12,7 +12,6 @@ interface JWTTokensInterface {
 export async function middleware(req: NextRequest) {
   const token = req.cookies.get("token")?.value;
   const url = "/auth?signup=false";
-  console.log("token is", token);
   if (!token) {
     return NextResponse.redirect(new URL(url, req.url));
   }
