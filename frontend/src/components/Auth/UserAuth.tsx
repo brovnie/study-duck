@@ -47,7 +47,7 @@ const UserAuth = () => {
         },
         {
           onSuccess: (data: UserAuthProps) => {
-            console.log("User created successfully:", data);
+            console.log("User logged in successfully:", data);
             if (data.token) {
               document.cookie = `token=${data.token}; path=/; max-age=${
                 60 * 60 * 24
