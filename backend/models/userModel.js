@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide a password"],
     minlength: [8, "Password must be at least 8 characters"],
-    maxlength: [128, "Password must be less than 128 characters"],
+    maxlength: [30, "Password must be less than 30 characters"],
     select: false,
   },
   name: {
@@ -46,6 +46,23 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  level: {
+    type: String,
+    required: [true, "Please provide a level"],
+    trim: true,
+    default: "Green Duck",
+  },
+  points: {
+    type: Number,
+    required: [true, "Please provide points"],
+    default: 0,
+  },
+  friends: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
 });
 
 userSchema.pre("save", function (next) {
