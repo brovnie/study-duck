@@ -32,6 +32,9 @@ const userSchema = new mongoose.Schema({
   },
   institute: {
     type: String,
+    required: [true, "Please provide an institute"],
+    trim: true,
+    default: "Unknown",
   },
   timeZone: {
     type: String,

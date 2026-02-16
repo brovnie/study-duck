@@ -11,7 +11,7 @@ export interface UserAuthProps {
       name: string;
       email?: string;
       timezone?: string;
-      school?: string;
+      institute?: string;
       profilePic?: string;
       accountCompleted: boolean;
     };

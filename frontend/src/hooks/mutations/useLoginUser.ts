@@ -21,7 +21,7 @@ export const useLoginUser = () => {
       login({
         name: user.name,
         profilePic: user.profilePic || "",
-        school: user.school || "",
+        institute: user.institute || "",
         timeZone: user.timezone || "",
       });
 

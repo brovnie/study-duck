@@ -32,7 +32,7 @@ exports.singUpProfile = async (req, res, next) => {
     req.body.id,
     {
       name: req.body.name,
-      school: req.body.school,
+      institute: req.body.institute,
       timeZone: req.body.timezone,
       profilePic: req.body.image,
       accountCompleted: true,

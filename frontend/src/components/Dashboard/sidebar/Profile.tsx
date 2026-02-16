@@ -100,6 +100,7 @@ const Profile = () => {
         <Link href="/dashboard/profile">
           <Avatar
             className="shadow-md border-2 border-white"
+            src={user?.profilePic}
             sx={{ width: 50, height: 50 }}
           />
         </Link>

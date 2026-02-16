@@ -38,7 +38,7 @@ export const createUser = async (data: {
 export const createUserProfile = async (data: {
   id: string;
   name: FormDataEntryValue | null;
-  school: FormDataEntryValue | null;
+  institute: FormDataEntryValue | null;
   timezone: FormDataEntryValue | null;
   image: string | null;
 }) => {
@@ -52,7 +52,7 @@ export const createUserProfile = async (data: {
     body: JSON.stringify({
       id: data.id,
       name: data.name,
-      school: data.school,
+      institute: data.institute,
       timezone: data.timezone,
       image: data.image,
     }),

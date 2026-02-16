@@ -11,7 +11,7 @@ import {
 interface User {
   name: string;
   profilePic: string;
-  school: string;
+  institute: string;
   timeZone: string;
 }
 
@@ -32,9 +32,9 @@ const UserContext = createContext<UserContextType | undefined>(undefined);
 export const UserProvider = ({ children }: UserProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
   const { data, isLoading, isError, isSuccess } = useGetCurrentUser();
-
+  console.log(data);
   useEffect(() => {
-    if (data) setUser(data);
+    if (data) setUser(data.data);
   }, [data]);
 
   const login = (userData: User) => {

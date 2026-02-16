@@ -52,10 +52,10 @@ const ProfileAuth = (userId: { userId: string }) => {
     const form = new FormData(target);
     const file = form.get("avatar");
     const name = form.get("name");
-    const school = form.get("school");
+    const institute = form.get("institute");
     const timezone = form.get("country");
 
-    if (!name && !school && (!(file instanceof File) || file.size === 0)) {
+    if (!name && !institute && (!(file instanceof File) || file.size === 0)) {
       setError({
         message: "Please complete the form.",
         input: "all",
@@ -69,10 +69,10 @@ const ProfileAuth = (userId: { userId: string }) => {
       });
       return;
     }
-    if (!school) {
+    if (!institute) {
       setError({
-        message: "Please fill in school",
-        input: "school",
+        message: "Please fill in institute",
+        input: "institute",
       });
       return;
     }
@@ -99,7 +99,7 @@ const ProfileAuth = (userId: { userId: string }) => {
         id: userId.userId,
         image: image,
         name: name,
-        school: school,
+        institute: institute,
         timezone: timezone,
       },
       {
@@ -149,10 +149,10 @@ const ProfileAuth = (userId: { userId: string }) => {
               type="text"
               placeholder="High School"
               id="input-name"
-              name="school"
+              name="institute"
               label="Where do you study?"
               className="w-[300px]"
-              error={error?.input === "school" || error?.input === "all"}
+              error={error?.input === "institute" || error?.input === "all"}
             />
           </div>
           <div className="py-5">
