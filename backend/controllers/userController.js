@@ -83,3 +83,28 @@ exports.getCurrentUser = async (req, res) => {
       .json({ status: "fail", message: "Token invalid or expired" });
   }
 };
+
+exports.getUserPoints = async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({
+      status: "error",
+      message: "Invalid ID format",
+    });
+  }
+
+  const user = await User.findById(id);
+
+  if (!user) {
+    return res.status(404).json({
+      status: "error",
+      message: "User not found",
+    });
+  }
+
+  res.status(200).json({
+    status: "success",
+    points: user.points,
+  });
+};
