@@ -142,18 +142,13 @@ exports.getUserSessionsCount = async (req, res) => {
       message: "Invalid ID format",
     });
   }
-  try {
-    const totalSessions = await Session.countDocuments({
-      participants: id,
-      status: "completed",
-    });
+  const totalSessions = await Session.countDocuments({
+    participants: id,
+    status: "completed",
+  });
 
-    res.status(200).json({
-      status: "success",
-      sessionsCount: totalSessions,
-    });
-  } catch (err) {
-    console.error(err);
-    return res.status(500).json({ status: "fail", message: err.message });
-  }
+  res.status(200).json({
+    status: "success",
+    sessionsCount: totalSessions,
+  });
 };
