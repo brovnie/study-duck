@@ -13,7 +13,7 @@ const Navigation = () => {
 
   return (
     <nav className="w-full flex justify-center lg:block lg:pl-4 mb-5">
-      <ul className="uppercase w-full flex flex-col gap-6 lg:gap-4 justify-center items-center lg:justify-start items-start">
+      <ul className="uppercase w-full flex flex-col gap-6 lg:gap-4 justify-center lg:justify-start items-start">
         <li className="w-full">
           <Link
             href="/dashboard"
