@@ -78,16 +78,12 @@ const Profile = () => {
           <AccordionDetails className="w-full flex flex-col gap-3 items-center">
             <div className="flex flex-col gap-3 items-center bg-white rounded-md w-full">
               <div className="flex flex-row items-center justify-between min-w-full">
-                <p className="uppercase">Level</p>
-                <p>Green Duck</p>
-              </div>
-              <div className="flex flex-row items-center justify-between min-w-full">
                 <p className="uppercase">Points</p>
                 <p>{points?.data?.points}</p>
               </div>
               <div className="flex flex-row items-center justify-between min-w-full">
                 <p className="uppercase">Sessions</p>
-                <p>10</p>
+                <p>100</p>
               </div>
             </div>
             <CustomLink
