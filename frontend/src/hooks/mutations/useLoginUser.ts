@@ -19,6 +19,7 @@ export const useLoginUser = () => {
         } as AppErrorType;
 
       login({
+        id: user.id,
         name: user.name,
         profilePic: user.profilePic || "",
         institute: user.institute || "",
