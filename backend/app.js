@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const userRoutes = require("./routes/userRoutes");
+const sessionRoutes = require("./routes/sessionRoutes");
 const cors = require("cors");
 const globalErrorHandler = require("./controllers/errorController");
 const cookieParser = require("cookie-parser");
@@ -17,5 +18,6 @@ app.use(
 );
 
 app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/sessions", sessionRoutes);
 app.use(globalErrorHandler);
 module.exports = app;

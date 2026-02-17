@@ -1,4 +1,5 @@
 const User = require("../models/userModel");
+const Session = require("../models/sessionModel");
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 
@@ -59,7 +60,6 @@ exports.getCurrentUser = async (req, res) => {
 
     // find the user by ID
     const user = await User.findById(decoded.id);
-    console.log(user);
     if (!user) {
       return res
         .status(401)
@@ -107,4 +107,53 @@ exports.getUserPoints = async (req, res) => {
     status: "success",
     points: user.points,
   });
+};
+
+exports.getUserLevel = async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({
+      status: "error",
+      message: "Invalid ID format",
+    });
+  }
+
+  const user = await User.findById(id);
+
+  if (!user) {
+    return res.status(404).json({
+      status: "error",
+      message: "User not found",
+    });
+  }
+
+  res.status(200).json({
+    status: "success",
+    level: user.level,
+  });
+};
+
+exports.getUserSessionsCount = async (req, res) => {
+  const { id } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({
+      status: "error",
+      message: "Invalid ID format",
+    });
+  }
+  try {
+    const totalSessions = await Session.countDocuments({
+      participants: id,
+      status: "completed",
+    });
+
+    res.status(200).json({
+      status: "success",
+      sessionsCount: totalSessions,
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ status: "fail", message: err.message });
+  }
 };
