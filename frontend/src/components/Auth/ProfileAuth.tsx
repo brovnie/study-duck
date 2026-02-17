@@ -17,6 +17,7 @@ const ProfileAuth = (userId: { userId: string }) => {
     message: string;
     input: string | undefined;
   }>(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [resetImg, setResetImg] = React.useState(false);
   const { data: signature } = useAvatarSignature();
   const createUserProfile = useCreateUserProfile();
@@ -49,6 +50,7 @@ const ProfileAuth = (userId: { userId: string }) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsLoading(true);
 
     const target = e.currentTarget;
     const form = new FormData(target);
@@ -105,6 +107,9 @@ const ProfileAuth = (userId: { userId: string }) => {
         timezone: timezone,
       },
       {
+        onSettled: () => {
+          setIsLoading(false);
+        },
         onSuccess: (data) => {
           console.log("User profile created successfully:", data);
           const user = data.data.user;
@@ -170,7 +175,12 @@ const ProfileAuth = (userId: { userId: string }) => {
           </div>
         </div>
         <div>
-          <CustomButton variant="primary" text="Save" type="submit" />
+          <CustomButton
+            variant="primary"
+            text={isLoading ? "Loading..." : "Save"}
+            type="submit"
+            disabled={isLoading}
+          />
         </div>
       </div>
     </form>
