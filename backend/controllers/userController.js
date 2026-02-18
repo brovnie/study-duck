@@ -149,6 +149,7 @@ exports.getUserSessionsCount = async (req, res) => {
 
   res.status(200).json({
     status: "success",
+    type: "session count",
     total: totalSessions,
   });
 };
@@ -177,7 +178,6 @@ exports.getUserSessionsStudyTime = async (req, res) => {
     },
   ]);
 
-  console.log(result[0]);
   const totalDuration = result[0]?.totalDuration || 0;
 
   res.status(200).json({
