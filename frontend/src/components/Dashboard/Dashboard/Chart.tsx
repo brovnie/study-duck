@@ -14,37 +14,6 @@ import {
   YAxis,
 } from "recharts";
 
-const data = [
-  {
-    name: "Monday",
-    sessions: 2,
-  },
-  {
-    name: "Tuesday",
-    sessions: 5,
-  },
-  {
-    name: "Wednesday",
-    sessions: 1,
-  },
-  {
-    name: "Thursday",
-    sessions: 2,
-  },
-  {
-    name: "Friday",
-    sessions: 3,
-  },
-  {
-    name: "Saturday",
-    sessions: 5,
-  },
-  {
-    name: "Sunday",
-    sessions: 6,
-  },
-];
-
 interface CustomTooltipProps extends TooltipProps<number, string> {
   payload?: {
     name: string;
