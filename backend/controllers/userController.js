@@ -152,3 +152,37 @@ exports.getUserSessionsCount = async (req, res) => {
     total: totalSessions,
   });
 };
+exports.getUserSessionsStudyTime = async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({
+      status: "error",
+      message: "Invalid ID format",
+    });
+  }
+
+  const result = await Session.aggregate([
+    {
+      $match: {
+        participants: new mongoose.Types.ObjectId(`${id}`),
+        status: "completed",
+      },
+    },
+    {
+      $group: {
+        _id: null,
+        totalDuration: { $sum: "$duration" },
+      },
+    },
+  ]);
+
+  console.log(result[0]);
+  const totalDuration = result[0]?.totalDuration || 0;
+
+  res.status(200).json({
+    status: "success",
+    type: "studytime",
+    total: totalDuration,
+  });
+};
