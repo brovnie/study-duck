@@ -17,7 +17,6 @@ interface User {
 }
 
 interface UserContextType {
-  id: string;
   user: User | null;
   loading: boolean;
   login: (userData: User) => void;
