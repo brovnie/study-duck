@@ -25,8 +25,8 @@ const ProfilePage = ({ params }: Props) => {
   return (
     <div className="w-full">
       <SectionContainer>
-        <h2 className="text-2xl font-bold">Your Profile</h2>
-        <UsersProfile />
+        <h2 className="text-2xl font-bold">Profile</h2>
+        <UsersProfile userId={id} />
       </SectionContainer>
       <SectionContainer>
         <Stats userId={id} />
