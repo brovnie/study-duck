@@ -1,7 +1,7 @@
 "use client";
 import { useUser } from "@/context/UserContext";
-import { useGetSessionsWeek } from "@/hooks/queries/getGetSessionsWeek";
-import React, { use } from "react";
+import { useGetSessionsWeek } from "@/hooks/queries/useGetSessionsWeek";
+import React from "react";
 import {
   Bar,
   BarChart,
