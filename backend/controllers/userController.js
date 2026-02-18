@@ -199,7 +199,7 @@ exports.getUserSessionsWeekly = async (req, res) => {
   }
 
   const today = new Date();
-  const dayOfTheWeek = today.getDay(); //sroda
+  const dayOfTheWeek = today.getDay();
 
   const monday = new Date(today);
   monday.setDate(today.getDate() - (dayOfTheWeek === 0 ? 6 : dayOfTheWeek - 1));
