@@ -150,7 +150,7 @@ export const getPoints = async (id: string) => {
 };
 
 export const getSessionsCount = async (id: string) => {
-  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}users/${id}/sessions/count`;
+  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}users/${id}/sessions/completed`;
 
   const response = await fetch(url, {
     method: "GET",
