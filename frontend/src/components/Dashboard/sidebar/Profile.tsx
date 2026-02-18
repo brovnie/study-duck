@@ -69,7 +69,7 @@ const Profile = () => {
             aria-controls="panel1-content"
             id="panel1-header"
           >
-            <Link href="/dashboard/profile">
+            <Link href={`/dashboard/profile/${user?.id}`}>
               <Avatar
                 className="shadow-md border-2 border-white"
                 src={user?.profilePic}
@@ -98,7 +98,7 @@ const Profile = () => {
         </CustomAccordion>
       </div>
       <div className="lg:hidden flex justify-center">
-        <Link href="/dashboard/profile">
+        <Link href={`/dashboard/profile/${user?.id}`}>
           <Avatar
             className="shadow-md border-2 border-white"
             src={user?.profilePic}
