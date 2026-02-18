@@ -182,3 +182,20 @@ export const getStudyTime = async (id: string) => {
 
   return responseData;
 };
+
+export const getCountFriends = async (id: string) => {
+  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}users/${id}/friends/count`;
+
+  const response = await fetch(url, {
+    method: "GET",
+    credentials: "include",
+  });
+
+  const responseData = await response.json();
+
+  if (!response.ok) {
+    throw responseData;
+  }
+
+  return responseData;
+};

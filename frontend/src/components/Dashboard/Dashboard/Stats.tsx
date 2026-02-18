@@ -5,11 +5,13 @@ import { useUser } from "@/context/UserContext";
 import { useGetSessionsCount } from "@/hooks/queries/useGetSessionsCount";
 import { useGetStudyTime } from "@/hooks/queries/useGetStudyTime";
 import { formatMinutesToHours } from "@/lib/utils";
+import { useCountFriends } from "@/hooks/queries/useContFriends";
 
 const Stats = () => {
   const { user } = useUser();
   const sessionsCount = useGetSessionsCount(user?.id);
   const sessionsStudyTime = useGetStudyTime(user?.id);
+  const totalFriends = useCountFriends(user?.id);
 
   return (
     <div className="bg-white p-5 rounded-md mt-3 flex-1 w-full">
@@ -27,8 +29,10 @@ const Stats = () => {
           <p className="text-lg">Studying</p>
         </div>
         <div className="flex flex-col flex-1 gap-3 bg-amber-300 p-5 rounded-md text-center">
-          <p className="text-3xl font-bold">6</p>
-          <p className="text-lg">Friends</p>
+          <p className="text-3xl font-bold">{totalFriends.data?.total}</p>
+          <p className="text-lg">
+            {totalFriends.data?.total === 1 ? "Friend" : "Friends"}
+          </p>
         </div>
       </div>
       <Chart />
