@@ -29,7 +29,7 @@ const Stats = ({ userId }: UserProps) => {
       <div>
         <div className="flex flex-row justify-center items-center gap-3 ">
           <p className="text-2xl">
-            {isMe && "Congratulation. You are a"}
+            {isMe && "Congratulation. You are a "}
             <span className="font-bold">
               {level?.data?.level || "Unknown"}!
             </span>
