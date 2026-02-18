@@ -17,6 +17,7 @@ interface User {
 }
 
 interface UserContextType {
+  id: string;
   user: User | null;
   loading: boolean;
   login: (userData: User) => void;
@@ -33,7 +34,7 @@ const UserContext = createContext<UserContextType | undefined>(undefined);
 export const UserProvider = ({ children }: UserProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
   const { data, isLoading, isError, isSuccess } = useGetCurrentUser();
-  console.log(data);
+
   useEffect(() => {
     if (data) setUser(data.data);
   }, [data]);

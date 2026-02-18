@@ -8,6 +8,7 @@ import CustomLink from "../../UI/Link";
 import Link from "next/link";
 import { useUser } from "@/context/UserContext";
 import { useGetPoints } from "@/hooks/queries/useGetPoints";
+import { useGetSessionsCount } from "@/hooks/queries/useGetSessionsCount";
 
 const CustomAccordion = styled(Accordion)(({ theme }) => ({
   "& .MuiAccordionSummary-root": {
@@ -29,6 +30,7 @@ const CustomAccordion = styled(Accordion)(({ theme }) => ({
 const Profile = () => {
   const { user } = useUser();
   const points = useGetPoints(user?.id);
+  const sessionsCount = useGetSessionsCount(user?.id);
 
   return (
     <div className="w-full px-4 mt-3 mb-5">
@@ -83,7 +85,7 @@ const Profile = () => {
               </div>
               <div className="flex flex-row items-center justify-between min-w-full">
                 <p className="uppercase">Sessions</p>
-                <p>100</p>
+                <p>{sessionsCount?.data?.total}</p>
               </div>
             </div>
             <CustomLink

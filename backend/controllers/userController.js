@@ -149,6 +149,6 @@ exports.getUserSessionsCount = async (req, res) => {
 
   res.status(200).json({
     status: "success",
-    sessionsCount: totalSessions,
+    total: totalSessions,
   });
 };
