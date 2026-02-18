@@ -153,6 +153,7 @@ exports.getUserSessionsCount = async (req, res) => {
     total: totalSessions,
   });
 };
+
 exports.getUserSessionsStudyTime = async (req, res) => {
   const { id } = req.params;
 
@@ -184,5 +185,53 @@ exports.getUserSessionsStudyTime = async (req, res) => {
     status: "success",
     type: "studytime",
     total: totalDuration,
+  });
+};
+
+exports.getFriends = async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({
+      status: "error",
+      message: "Invalid ID format",
+    });
+  }
+  const friends = await User.findById(id).select("friends");
+
+  if (!friends) {
+    return res.status(404).json({
+      status: "error",
+      message: "User not found",
+    });
+  }
+
+  res.status(200).json({
+    status: "success",
+    friends: friends.friends,
+  });
+};
+
+exports.getFriendsCount = async (req, res) => {
+  const { id } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({
+      status: "error",
+      message: "Invalid ID format",
+    });
+  }
+  const friends = await User.findById(id).select("friends");
+
+  if (!friends) {
+    return res.status(404).json({
+      status: "error",
+      message: "User not found",
+    });
+  }
+
+  res.status(200).json({
+    status: "success",
+    type: "friends",
+    total: friends.friends.length,
   });
 };
