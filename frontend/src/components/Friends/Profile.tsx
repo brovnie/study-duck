@@ -4,7 +4,11 @@ import CustomButton from "../UI/Button";
 import Form from "next/form";
 import { useUser } from "@/context/UserContext";
 
-const Profile = () => {
+type UserProps = {
+  isMe: boolean;
+};
+
+const Profile = ({ isMe }: UserProps) => {
   const { user } = useUser();
   return (
     <>
@@ -13,9 +17,15 @@ const Profile = () => {
         <p className="text-2xl font-bold">{user?.name}</p>
         <p>{user?.timeZone}</p>
         <p>{user?.institute}</p>
-        <Form action={() => {}} className="pt-3">
-          <CustomButton text="Add to friend" variant="primary" type="submit" />
-        </Form>
+        {!isMe && (
+          <Form action={() => {}} className="pt-3">
+            <CustomButton
+              text="Add to friend"
+              variant="primary"
+              type="submit"
+            />
+          </Form>
+        )}
       </div>
     </>
   );
