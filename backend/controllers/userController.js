@@ -188,6 +188,77 @@ exports.getUserSessionsStudyTime = async (req, res) => {
   });
 };
 
+exports.getUserSessionsWeekly = async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({
+      status: "error",
+      message: "Invalid ID format",
+    });
+  }
+
+  const today = new Date();
+  const dayOfTheWeek = today.getDay(); //sroda
+
+  const monday = new Date(today);
+  monday.setDate(today.getDate() - (dayOfTheWeek === 0 ? 6 : dayOfTheWeek - 1));
+  monday.setHours(0, 0, 0, 0);
+
+  const sunday = new Date(monday);
+  sunday.setDate(monday.getDate() + 6);
+  sunday.setHours(23, 59, 59, 999);
+
+  const sessionsPerDay = await Session.aggregate([
+    {
+      $match: {
+        participants: new mongoose.Types.ObjectId(`${id}`),
+        createdAt: { $gte: monday, $lte: sunday }, // filter by week
+      },
+    },
+    {
+      $group: {
+        _id: { $dayOfWeek: "$createdAt" }, // 1=Sunday, 2=Monday,...7=Saturday
+        count: { $sum: 1 },
+      },
+    },
+    {
+      $sort: { _id: 1 }, // optional, sort by day of week
+    },
+  ]);
+
+  const fullWeek = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
+  const dayNames = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  const result = fullWeek.map((day) => {
+    const found = sessionsPerDay.find((d) => {
+      return dayNames[d._id - 1] === day;
+    });
+    return { day, count: found ? found.count : 0 };
+  });
+
+  res.status(200).json({
+    status: "success",
+    week: result,
+  });
+};
+
 exports.getFriends = async (req, res) => {
   const { id } = req.params;
 

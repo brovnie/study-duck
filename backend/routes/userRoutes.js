@@ -13,7 +13,7 @@ router.get("/:id/level", userController.getUserLevel);
 
 router.get("/:id/sessions/completed", userController.getUserSessionsCount);
 router.get("/:id/sessions/studytime", userController.getUserSessionsStudyTime);
-router.get("/:id/sessions/");
+router.get("/:id/sessions/weekly", userController.getUserSessionsWeekly);
 
 router.get("/:id/friends", userController.getFriends);
 router.get("/:id/friends/count", userController.getFriendsCount);
