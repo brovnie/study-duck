@@ -5,7 +5,6 @@ import { useGetLevel } from "@/hooks/queries/useGetLevel";
 import { useGetPoints } from "@/hooks/queries/useGetPoints";
 import { useGetSessionsCount } from "@/hooks/queries/useGetSessionsCount";
 import { useGetStudyTime } from "@/hooks/queries/useGetStudyTime";
-import { getUserById } from "@/lib/api/users";
 import { maxPoints } from "@/lib/utils";
 import React from "react";
 
