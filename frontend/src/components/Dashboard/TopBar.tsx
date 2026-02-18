@@ -2,12 +2,63 @@
 import React from "react";
 import CustomLink from "../UI/Link";
 import { Badge, IconButton, styled } from "@mui/material";
+import { useUser } from "@/context/UserContext";
+import { useGetPoints } from "@/hooks/queries/useGetPoints";
+
+const levels = [
+  {
+    level: "gray",
+    points: 0,
+    color: "fill-gray-600",
+  },
+  {
+    level: "green",
+    points: 50,
+    color: "fill-green-600",
+  },
+  {
+    level: "yellow",
+    points: 100,
+    color: "fill-yellow-600",
+  },
+  {
+    level: "orange",
+    points: 150,
+    color: "fill-orange-600",
+  },
+  {
+    level: "red",
+    points: 200,
+    color: "fill-red-600",
+  },
+  {
+    level: "blue",
+    points: 250,
+    color: "fill-blue-600",
+  },
+  {
+    level: "purple",
+    points: 300,
+    color: "fill-fuchsia-600",
+  },
+];
 
 const CustomIconButton = styled(IconButton)(({ theme }) => ({
   backgroundColor: "white",
 }));
 
 const TopBar = () => {
+  const { user } = useUser();
+  const points = useGetPoints(user?.id);
+  const currentPoints = points?.data?.points;
+  const maxPoints = Number.isFinite(currentPoints)
+    ? levels.find((lv) => {
+        return currentPoints < 300
+          ? lv.points >= currentPoints && lv.level !== "gray"
+          : lv.level === "purple";
+      })
+    : levels[0];
+
   return (
     <div className="flex flex-col md:flex-row items-center justify-between w-full px-5 mt-5">
       <div className="bg-white px-3 py-2 shadow-md rounded-lg">
@@ -25,7 +76,7 @@ const TopBar = () => {
       <div className="flex flex-row items-center gap-2">
         <div className="flex flex-row items-center gap-2 bg-white px-3 py-2 shadow-md rounded-lg">
           <svg
-            className={"fill-green-600"}
+            className={maxPoints?.color}
             width="25"
             height="23"
             viewBox="0 0 25 23"
@@ -38,7 +89,9 @@ const TopBar = () => {
             />
           </svg>
 
-          <p>100/200</p>
+          <p>
+            {currentPoints ?? "N/A"}/{maxPoints?.points}
+          </p>
         </div>
         <div>
           <CustomIconButton
