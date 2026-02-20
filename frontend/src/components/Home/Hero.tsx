@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import CardSwap, { Card } from "@/components/UI/CardSwap";
 import Image from "next/image";
