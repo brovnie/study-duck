@@ -22,6 +22,7 @@ interface UserContextType {
   user: User | null;
   loading: boolean;
   token: string | null;
+  setTemporaryToken: (token: string) => void;
   login: (userData: User, token: string) => void;
   logout: () => Promise<void>;
   updateUser: (updates: Partial<User>) => void;
@@ -63,11 +64,16 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     setUser((prev) => (prev ? { ...prev, ...updates } : prev));
   };
 
+  const setTemporaryToken = (token: string) => {
+    setToken(token);
+  };
+
   return (
     <UserContext.Provider
       value={{
         user,
         token,
+        setTemporaryToken,
         loading: isLoading,
         login,
         logout,

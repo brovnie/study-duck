@@ -7,6 +7,7 @@ import { useCreateUser } from "@/hooks/mutations/useCreateUser";
 import ErrorMessage from "../UI/ErrorMessage";
 import { AppErrorType, UserAuthProps } from "./types";
 import { useLoginUser } from "@/hooks/mutations/useLoginUser";
+import { useUser } from "@/context/UserContext";
 
 const UserAuth = () => {
   const searchParams = useSearchParams();
@@ -20,6 +21,7 @@ const UserAuth = () => {
   }>(null);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const { setTemporaryToken } = useUser();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -67,15 +69,10 @@ const UserAuth = () => {
         { email, password },
         {
           onSuccess: (data: UserAuthProps) => {
-            console.log("User created successfully:", data);
-
-            /*if (data.token) {
-              document.cookie = `token=${data.token}; path=/; max-age=${
-                60 * 60 * 24
-              }; secure; samesite=lax`;
-            } */
+            //console.log("User created successfully:", data);
             form.reset();
             setIsLoading(false);
+            setTemporaryToken(data.token);
             router.push("/auth/profile");
           },
           onError: (error) => {

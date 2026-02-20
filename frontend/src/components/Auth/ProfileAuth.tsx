@@ -12,7 +12,7 @@ import { AppErrorType } from "./types";
 import { useRouter } from "next/navigation";
 import { useUser } from "@/context/UserContext";
 
-const ProfileAuth = (userId: { userId: string }) => {
+const ProfileAuth = (userId: { userId: string | null }) => {
   const [error, setError] = useState<null | {
     message: string;
     input: string | undefined;

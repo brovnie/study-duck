@@ -39,12 +39,8 @@ exports.singUpProfile = async (req, res, next) => {
     },
     { new: true }
   );
-  res.status(200).json({
-    status: "success",
-    data: {
-      user: updateUser,
-    },
-  });
+
+  createSendToken(updateUser, 200, res);
 };
 
 const createSendToken = (user, statusCode, res) => {

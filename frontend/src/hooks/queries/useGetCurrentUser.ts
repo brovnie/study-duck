@@ -7,6 +7,6 @@ export const useGetCurrentUser = () => {
   return useQuery({
     queryKey: ["current-user"],
     queryFn: getCurrentUser,
-    enabled: !path.startsWith("/auth"),
+    enabled: path.startsWith("/dashboard"),
   });
 };
