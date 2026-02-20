@@ -1,3 +1,4 @@
+"use client";
 import {
   Backdrop,
   FormControl,
@@ -9,6 +10,9 @@ import Form from "next/form";
 import React from "react";
 import SelectInput from "./SelectInput";
 import CustomButton from "./Button";
+import { LocalizationProvider, TimePicker } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import dayjs, { Dayjs } from "dayjs";
 
 type BackdropSessionType = {
   isOpen: boolean;
@@ -16,11 +20,13 @@ type BackdropSessionType = {
 };
 
 const BackdropSession = ({ isOpen, setIsOpen }: BackdropSessionType) => {
+  const [time, setTime] = React.useState<Dayjs | null>(dayjs());
+
   return (
     <Backdrop open={isOpen} className="z-10">
       <div className="bg-white rounded-xl shadow-md w-[325px] py-4 px-5">
         <div className="flex flex-row justify-between">
-          <p className="font-bold">Set up Session</p>
+          <p className="font-bold">Set up Sessions</p>
           <div>
             <button className="cursor-pointer" onClick={() => setIsOpen(false)}>
               <svg
@@ -45,40 +51,15 @@ const BackdropSession = ({ isOpen, setIsOpen }: BackdropSessionType) => {
           <div className="flex flex-row gap-5 items-center mt-2">
             <div className="flex flex-row items-center gap-2">
               <SelectInput
-                name="hours"
-                options={[
-                  { value: "1", label: "1" },
-                  { value: "2", label: "2" },
-                  { value: "3", label: "3" },
-                  { value: "4", label: "4" },
-                  { value: "5", label: "5" },
-                  { value: "6", label: "6" },
-                ]}
-                defaultValue="1"
-                hideLabel
-              />
-              <label htmlFor="hours" className="text-sm">
-                Hours
-              </label>
-            </div>
-            <div className="flex flex-row items-center gap-2">
-              <SelectInput
                 name="minutes"
                 options={[
-                  { value: "0", label: "0" },
-                  { value: "5", label: "5" },
-                  { value: "10", label: "10" },
-                  { value: "15", label: "15" },
-                  { value: "20", label: "20" },
                   { value: "25", label: "25" },
                   { value: "30", label: "30" },
-                  { value: "35", label: "35" },
-                  { value: "40", label: "40" },
                   { value: "45", label: "45" },
-                  { value: "50", label: "50" },
-                  { value: "55", label: "55" },
+                  { value: "60", label: "60" },
+                  { value: "90", label: "90" },
                 ]}
-                defaultValue="0"
+                defaultValue="25"
                 hideLabel
               />
               <label htmlFor="minutes" className="text-sm">
@@ -110,7 +91,16 @@ const BackdropSession = ({ isOpen, setIsOpen }: BackdropSessionType) => {
                 </RadioGroup>
               </FormControl>
             </div>
+            <p className="mb-2">Start Time</p>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <TimePicker
+                value={time}
+                minTime={dayjs().add(5, "minutes")}
+                onChange={(newTime) => setTime(newTime)}
+              />
+            </LocalizationProvider>
           </div>
+
           <CustomButton
             type="submit"
             cssClasses="w-full mt-3"
