@@ -47,7 +47,6 @@ exports.getCurrentUser = async (req, res) => {
     if (!token) {
       return res.status(401).json({ status: "fail", message: "Not logged in" });
     }
-    console.log(token);
     // verify the JWT
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
