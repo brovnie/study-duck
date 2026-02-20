@@ -1,19 +1,29 @@
+"use client";
 import ProfileAuth from "@/components/Auth/ProfileAuth";
 import Logo from "@/components/icons/Logo";
 import Link from "next/link";
-import React from "react";
-import { cookies } from "next/headers";
+import React, { useEffect } from "react";
 import jwt from "jsonwebtoken";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { useUser } from "@/context/UserContext";
 
-async function Profile() {
-  const allCookies = await cookies();
-  const token = allCookies.get("token");
+function Profile() {
+  const { token } = useUser();
+  const router = useRouter();
+  const [userId, setUserId] = React.useState<string | null>(null);
 
-  if (!token) redirect("/");
-
-  const decoded = jwt.decode(token?.value);
-  const userId = decoded.id as string;
+  useEffect(() => {
+    if (!token) {
+      router.push("/");
+      return;
+    }
+    const decoded = jwt.decode(token);
+    if (!decoded.id) {
+      router.push("/");
+      return;
+    }
+    setUserId(decoded.id);
+  }, [token, router]);
 
   return (
     <div className="">
