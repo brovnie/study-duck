@@ -92,7 +92,7 @@ exports.logout = (req, res) => {
     httpOnly: true,
     path: "/",
     sameSite: "none",
-    secure: false,
+    secure: process.env.NODE_ENV === "production",
   });
 
   res.status(200).json({
