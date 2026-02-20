@@ -83,3 +83,15 @@ exports.signIn = async (req, res, next) => {
 
   createSendToken(user, 200, res);
 };
+
+exports.logout = (req, res) => {
+  res.clearCookie("jwt", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax", //TODO: Deploy!! Lax works for the pame page (localhost) chenge later if i want to deploy.
+  });
+
+  res.status(200).json({
+    status: "success",
+  });
+};

@@ -1,5 +1,7 @@
 "use client";
+import { useLogout } from "@/hooks/mutations/useLogout";
 import { useGetCurrentUser } from "@/hooks/queries/useGetCurrentUser";
+import { useRouter } from "next/navigation";
 import {
   createContext,
   ReactNode,
@@ -33,7 +35,8 @@ const UserContext = createContext<UserContextType | undefined>(undefined);
 export const UserProvider = ({ children }: UserProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
   const { data, isLoading, isError, isSuccess } = useGetCurrentUser();
-
+  const logoutUser = useLogout();
+  const router = useRouter();
   useEffect(() => {
     if (data) setUser(data.data);
   }, [data]);
@@ -43,8 +46,12 @@ export const UserProvider = ({ children }: UserProviderProps) => {
   };
 
   const logout = async () => {
-    //logout user go to api user/logout
-    setUser(null);
+    logoutUser.mutate(undefined, {
+      onSuccess: () => {
+        setUser(null);
+        router.push("/");
+      },
+    });
   };
 
   const updateUser = (updates: Partial<User>) => {

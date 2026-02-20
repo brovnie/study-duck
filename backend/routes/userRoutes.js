@@ -26,4 +26,6 @@ router.patch("/signup/profile", authController.singUpProfile);
 
 router.post("/signin", authController.signIn);
 
+router.post("/logout", authController.logout);
+
 module.exports = router;
