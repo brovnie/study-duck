@@ -113,13 +113,16 @@ const ProfileAuth = (userId: { userId: string }) => {
         onSuccess: (data) => {
           console.log("User profile created successfully:", data);
           const user = data.data.user;
-          login({
-            id: user._id,
-            name: user.name,
-            profilePic: user.profilePic || "",
-            institute: user.institute || "",
-            timeZone: user.timezone || "",
-          });
+          login(
+            {
+              id: user._id,
+              name: user.name,
+              profilePic: user.profilePic || "",
+              institute: user.institute || "",
+              timeZone: user.timezone || "",
+            },
+            data.token
+          );
           setResetImg((prev) => !prev);
           target.reset();
           router.push("/dashboard");

@@ -1,10 +1,3 @@
-const token =
-  typeof window !== "undefined" ? localStorage.getItem("token") : null;
-const defaultHeaders = {
-  "Content-Type": "application/json",
-  ...(token && { Authorization: `Bearer ${token}` }),
-};
-
 //
 // Create a new user
 export const createUser = async (data: {
@@ -49,6 +42,7 @@ export const createUserProfile = async (data: {
     headers: {
       "Content-Type": "application/json",
     },
+    credentials: "include",
     body: JSON.stringify({
       id: data.id,
       name: data.name,
@@ -80,6 +74,7 @@ export const loginUser = async (data: {
     headers: {
       "Content-Type": "application/json",
     },
+    credentials: "include",
     body: JSON.stringify({
       email: data.email,
       password: data.password,
@@ -122,7 +117,7 @@ export const getCurrentUser = async () => {
   });
 
   const responseData = await response.json();
-
+  console.log(responseData);
   if (!response.ok) {
     throw responseData;
   }
@@ -137,7 +132,7 @@ export const getUserById = async (id: string) => {
 
   const response = await fetch(url, {
     method: "GET",
-    headers: defaultHeaders,
+    credentials: "include",
   });
 
   const responseData = await response.json();

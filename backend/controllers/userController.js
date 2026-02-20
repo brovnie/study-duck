@@ -43,11 +43,11 @@ exports.getUserById = async (req, res) => {
 exports.getCurrentUser = async (req, res) => {
   try {
     // read the token from the cookie
-    const token = req.cookies?.token;
+    const token = req.cookies?.jwt;
     if (!token) {
       return res.status(401).json({ status: "fail", message: "Not logged in" });
     }
-
+    console.log(token);
     // verify the JWT
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
@@ -75,6 +75,7 @@ exports.getCurrentUser = async (req, res) => {
         institute: user.institute,
         timeZone: user.timeZone,
       },
+      token: token,
     });
   } catch (err) {
     console.error(err);

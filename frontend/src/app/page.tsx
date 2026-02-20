@@ -1,4 +1,3 @@
-"use client";
 import Hero from "@/components/Home/Hero";
 import Navigation from "@/components/Home/Navigation";
 

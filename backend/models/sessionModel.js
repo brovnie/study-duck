@@ -27,6 +27,10 @@ const sessionSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  startingTime: {
+    type: Date,
+    required: [true, "Please provide a starting time"],
+  },
   participants: {
     type: [
       {

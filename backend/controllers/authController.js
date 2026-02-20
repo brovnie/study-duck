@@ -52,6 +52,9 @@ const createSendToken = (user, statusCode, res) => {
   const cookieOptions = {
     expires: new Date(Date.now() + ms(process.env.JWT_EXPIRES_IN)),
     httpOnly: true,
+    secure: false,
+    path: "/",
+    sameSite: "none",
   };
 
   if (process.env.NODE_ENV === "production") cookieOptions.secure = true;
@@ -61,10 +64,10 @@ const createSendToken = (user, statusCode, res) => {
 
   res.status(statusCode).json({
     status: "success",
-    token,
     data: {
       user,
     },
+    token,
   });
 };
 
@@ -87,8 +90,9 @@ exports.signIn = async (req, res, next) => {
 exports.logout = (req, res) => {
   res.clearCookie("jwt", {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax", //TODO: Deploy!! Lax works for the pame page (localhost) chenge later if i want to deploy.
+    path: "/",
+    sameSite: "none",
+    secure: false,
   });
 
   res.status(200).json({

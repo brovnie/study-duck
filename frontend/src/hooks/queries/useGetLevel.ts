@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 
 export const useGetLevel = (id?: string) => {
   return useQuery({
-    queryKey: ["level", id],
+    queryKey: ["user", "level", id],
     queryFn: () => getLevel(id as string),
     enabled: !!id,
   });

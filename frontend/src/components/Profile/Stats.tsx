@@ -31,7 +31,7 @@ const Stats = ({ userId }: UserProps) => {
           <p className="text-2xl">
             {isMe && "Congratulation. You are a "}
             <span className="font-bold">
-              {level?.data?.level || "Unknown"}!
+              {level?.data?.level || "Sorry Level is not found"}!
             </span>
           </p>
         </div>

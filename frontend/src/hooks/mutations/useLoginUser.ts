@@ -18,24 +18,22 @@ export const useLoginUser = () => {
           input: "all",
         } as AppErrorType;
 
-      login({
-        id: user.id,
-        name: user.name,
-        profilePic: user.profilePic || "",
-        institute: user.institute || "",
-        timeZone: user.timezone || "",
-      });
-
       if (!data.token)
         throw {
           name: "Token not found",
           message: "Something wrong has happend please try again",
           input: "all",
         } as AppErrorType;
-
-      document.cookie = `token=${data.token}; path=/; max-age=${
-        60 * 60 * 24
-      }; secure; samesite=lax`;
+      login(
+        {
+          id: user.id,
+          name: user.name,
+          profilePic: user.profilePic || "",
+          institute: user.institute || "",
+          timeZone: user.timezone || "",
+        },
+        data.token
+      );
     },
   });
 };

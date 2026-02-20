@@ -1,6 +1,7 @@
 "use client";
 import { useLogout } from "@/hooks/mutations/useLogout";
 import { useGetCurrentUser } from "@/hooks/queries/useGetCurrentUser";
+import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import {
   createContext,
@@ -21,7 +22,8 @@ interface User {
 interface UserContextType {
   user: User | null;
   loading: boolean;
-  login: (userData: User) => void;
+  token: string;
+  login: (userData: User, token: string) => void;
   logout: () => Promise<void>;
   updateUser: (updates: Partial<User>) => void;
 }
@@ -34,14 +36,17 @@ const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export const UserProvider = ({ children }: UserProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
+  const [token, setToken] = useState<string | null>(null);
   const { data, isLoading, isError, isSuccess } = useGetCurrentUser();
   const logoutUser = useLogout();
   const router = useRouter();
+
   useEffect(() => {
     if (data) setUser(data.data);
   }, [data]);
 
-  const login = (userData: User) => {
+  const login = (userData: User, token: string) => {
+    setToken(token);
     setUser(userData);
   };
 
@@ -62,6 +67,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     <UserContext.Provider
       value={{
         user,
+        token,
         loading: isLoading,
         login,
         logout,
