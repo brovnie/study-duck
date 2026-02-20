@@ -2,7 +2,6 @@
 import React from "react";
 import Logo from "../../icons/Logo";
 import Profile from "./Profile";
-import CustomLink from "../../UI/Link";
 import Navigation from "./Navigation";
 import { useUser } from "@/context/UserContext";
 import CustomButton from "@/components/UI/Button";
