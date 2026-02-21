@@ -1,14 +1,7 @@
 "use state";
 import React, { useMemo, useState } from "react";
 import Form from "next/form";
-import {
-  DateTimePicker,
-  LocalizationProvider,
-  TimePicker,
-} from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import CustomButton from "../UI/Button";
-import SelectInput from "../UI/SelectInput";
 import {
   FormControl,
   FormControlLabel,
@@ -17,8 +10,8 @@ import {
 } from "@mui/material";
 import dayjs, { Dayjs } from "dayjs";
 import InfoIcon from "../UI/InfoIcon";
-import { min } from "moment";
 import SelectInput2 from "../UI/SelectInput2";
+import DateTimePicker from "../UI/DateTimePicker";
 
 const SessionForm = () => {
   const [time, setTime] = useState<Dayjs | null>(null);
@@ -80,14 +73,12 @@ const SessionForm = () => {
           Start Date and Time
           <InfoIcon message="Session can start min 5 minutes from now" />
         </p>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DateTimePicker
-            ampm={false}
-            minDate={today}
-            minTime={minTime}
-            timeSteps={{ minutes: 5 }}
-          />
-        </LocalizationProvider>
+        <DateTimePicker
+          ampm={false}
+          minDate={today}
+          minTime={minTime}
+          timeSteps={{ minutes: 5 }}
+        />
       </div>
 
       <CustomButton
