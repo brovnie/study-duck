@@ -37,8 +37,7 @@ exports.getSessionById = async (req, res) => {
 };
 
 exports.createSession = async (req, res) => {
-  const { userId, type, duration } = req.body;
-
+  const { userId, type, duration, startingTime } = req.body;
   if (!mongoose.Types.ObjectId.isValid(userId)) {
     return res.status(400).json({
       status: "error",
@@ -50,6 +49,7 @@ exports.createSession = async (req, res) => {
     admin: userId,
     type,
     duration,
+    startingTime,
     participants: [userId],
   });
 
