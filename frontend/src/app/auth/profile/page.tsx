@@ -3,9 +3,13 @@ import ProfileAuth from "@/components/Auth/ProfileAuth";
 import Logo from "@/components/icons/Logo";
 import Link from "next/link";
 import React, { useEffect } from "react";
-import jwt from "jsonwebtoken";
+import jwt, { JwtPayload } from "jsonwebtoken";
 import { useRouter } from "next/navigation";
 import { useUser } from "@/context/UserContext";
+
+interface MyJwtPayload extends JwtPayload {
+  id: string;
+}
 
 function Profile() {
   const { token } = useUser();
@@ -17,11 +21,13 @@ function Profile() {
       router.push("/");
       return;
     }
-    const decoded = jwt.decode(token);
-    if (!decoded.id) {
+
+    const decoded = jwt.decode(token) as MyJwtPayload | null;
+    if (!decoded || typeof decoded === "string") {
       router.push("/");
       return;
     }
+
     setUserId(decoded.id);
   }, [token, router]);
 
