@@ -31,6 +31,7 @@ const BootstrapSelect = styled((props: SelectProps<string>) => (
     "&:focus": {
       boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
       borderColor: theme.palette.primary.main,
+      borderRadius: 10,
     },
   },
   ".MuiOutlinedInput-notchedOutline": {
