@@ -15,11 +15,12 @@ interface CustomDateTimePickerProps {
     minutes?: number;
     hours?: number;
   };
+  error?: boolean;
 }
 
 export default function CustomDateTimePicker(props: CustomDateTimePickerProps) {
   const [value, setValue] = useState<Dayjs | null>(null);
-
+  console.log(props.error);
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DateTimePicker
@@ -33,6 +34,12 @@ export default function CustomDateTimePicker(props: CustomDateTimePickerProps) {
           width: "100%",
           "& .MuiPickersInputBase-root": {
             borderRadius: 3,
+            borderColor: props.error ? "red" : "rgba(0, 0, 0, 0.87)",
+          },
+          ".MuiPickersOutlinedInput-notchedOutline ": {
+            borderColor: props.error
+              ? "var(--color-red-400) "
+              : "rgba(0, 0, 0, 0.87)",
           },
         }}
         name="datetime"

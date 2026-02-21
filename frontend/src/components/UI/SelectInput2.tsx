@@ -60,6 +60,7 @@ type SelectInputType = {
   onChange?: (event: SelectChangeEvent) => void;
   defaultValue?: string;
   hideLabel?: boolean;
+  error?: boolean;
 };
 const SelectInput2 = (props: SelectInputType) => {
   return (
@@ -76,6 +77,7 @@ const SelectInput2 = (props: SelectInputType) => {
         variant="outlined"
         onChange={props.onChange}
         defaultValue={props.defaultValue}
+        error={props.error}
       >
         {props.options.map((option) => (
           <MenuItem key={option.value} value={option.value}>
