@@ -1,7 +1,7 @@
 "use client";
 import { useLogout } from "@/hooks/mutations/useLogout";
 import { useGetCurrentUser } from "@/hooks/queries/useGetCurrentUser";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import {
   createContext,
   ReactNode,
@@ -37,7 +37,7 @@ const UserContext = createContext<UserContextType | undefined>(undefined);
 export const UserProvider = ({ children }: UserProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(null);
-  const { data, isLoading, isError, isSuccess } = useGetCurrentUser();
+  const { data, isLoading } = useGetCurrentUser();
   const logoutUser = useLogout();
   const router = useRouter();
 

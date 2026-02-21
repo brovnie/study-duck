@@ -18,6 +18,7 @@ import {
 import dayjs, { Dayjs } from "dayjs";
 import InfoIcon from "../UI/InfoIcon";
 import { min } from "moment";
+import SelectInput2 from "../UI/SelectInput2";
 
 const SessionForm = () => {
   const [time, setTime] = useState<Dayjs | null>(null);
@@ -34,7 +35,7 @@ const SessionForm = () => {
       <div className="flex flex-row gap-5 items-center mt-2">
         <div className="flex flex-row items-center gap-2">
           <p>Duration</p>
-          <SelectInput
+          <SelectInput2
             name="minutes"
             options={[
               { value: "25", label: "25" },
