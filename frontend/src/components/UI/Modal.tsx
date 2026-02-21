@@ -1,22 +1,22 @@
 "use client";
-import { Backdrop } from "@mui/material";
+import { Modal } from "@mui/material";
 import React from "react";
 
-type CustomBackdropType = {
+type CustomModalTypes = {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   children: React.ReactNode;
   title: string;
 };
 
-const CustomBackdrop = ({
+const CustomModal = ({
   isOpen,
   setIsOpen,
   children,
   title,
-}: CustomBackdropType) => {
+}: CustomModalTypes) => {
   return (
-    <Backdrop open={isOpen} className="z-10">
+    <Modal open={isOpen} className="z-10 flex items-center justify-center">
       <div className="bg-white rounded-xl shadow-md w-[325px] py-4 px-5">
         <div className="flex flex-row justify-between">
           <p className="font-bold">{title}</p>
@@ -41,8 +41,8 @@ const CustomBackdrop = ({
         </div>
         {children}
       </div>
-    </Backdrop>
+    </Modal>
   );
 };
 
-export default CustomBackdrop;
+export default CustomModal;

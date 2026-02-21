@@ -6,7 +6,7 @@ import PillTabs from "@/components/UI/PillTabs";
 import React from "react";
 import SectionContainer from "@/components/UI/SectionContainer";
 import SessionForm from "@/components/Session/SessionForm";
-import CustomBackdrop from "@/components/UI/CustomBackdrop";
+import CustomModal from "@/components/UI/Modal";
 
 const Sessions = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -51,13 +51,9 @@ const Sessions = () => {
           </div>
         }
       />
-      <CustomBackdrop
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
-        title="Set up Session"
-      >
+      <CustomModal isOpen={isOpen} setIsOpen={setIsOpen} title="Set up Session">
         <SessionForm />
-      </CustomBackdrop>
+      </CustomModal>
     </SectionContainer>
   );
 };
