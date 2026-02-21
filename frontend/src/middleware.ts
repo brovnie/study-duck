@@ -1,8 +1,7 @@
 import { jwtDecode } from "jwt-decode";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { getCurrentUser, getUserById } from "./lib/api/users";
-import { useGetCurrentUser } from "./hooks/queries/useGetCurrentUser";
+import { getUserById } from "./lib/api/users";
 
 interface JWTTokensInterface {
   id: string;
