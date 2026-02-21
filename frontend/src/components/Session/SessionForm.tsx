@@ -16,7 +16,11 @@ import { useCreateSession } from "@/hooks/mutations/useCreateSession";
 import { useUser } from "@/context/UserContext";
 import ErrorMessage from "../UI/ErrorMessage";
 
-const SessionForm = () => {
+const SessionForm = ({
+  setIsOpen,
+}: {
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const [type, setType] = useState("one-on-one");
   const [isLoading, setIsLoading] = useState(false);
   const createSession = useCreateSession();
@@ -87,6 +91,7 @@ const SessionForm = () => {
       {
         onSuccess: (data) => {
           console.log("Session created successfully:", data);
+          setIsOpen(false);
         },
         onError: (error) => {
           console.error("Error creating session:", error);

@@ -54,7 +54,7 @@ const GroupSessions = () => {
         }
       />
       <CustomModal isOpen={isOpen} setIsOpen={setIsOpen} title="Set up Session">
-        <SessionForm />
+        <SessionForm setIsOpen={setIsOpen} />
       </CustomModal>
     </SectionContainer>
   );

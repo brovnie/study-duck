@@ -25,4 +25,6 @@ export const createSession = async (data: {
   if (!response.ok) {
     throw responseData;
   }
+
+  return responseData;
 };
