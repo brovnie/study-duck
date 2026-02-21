@@ -98,8 +98,3 @@ abbr[title] {
   background-color: var(--color-amber-300) !important;
   border-color: var(--color-amber-300) !important;
 }
-/* scoped to your component/module if possible */
-.MuiPickersInput-root,
-.MuiPickersInput-root.Mui-focused {
-  border-radius: 20px;
-}
