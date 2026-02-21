@@ -98,6 +98,11 @@ const ProfileAuth = (userId: { userId: string | null }) => {
     }
     const image = uploadResponse.secure_url;
 
+    if (!userId.userId) {
+      router.push("/auth?signup=true");
+      return;
+    }
+
     await createUserProfile.mutate(
       {
         id: userId.userId,

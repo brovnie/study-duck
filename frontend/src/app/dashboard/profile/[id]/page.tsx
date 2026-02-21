@@ -18,7 +18,7 @@ const ProfilePage = ({ params }: Props) => {
 
   useEffect(() => {
     if (!user.isLoading && !user.data) {
-      router.push("/dashboard/profile");
+      router.push("/dashboard");
     }
   }, [user.isLoading, user.data, router]);
 

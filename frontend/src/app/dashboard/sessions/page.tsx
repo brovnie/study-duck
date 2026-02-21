@@ -1,12 +1,12 @@
 "use client";
-import BackdropSession from "@/components/UI/BackdropSession";
 import BigCalendar from "@/components/UI/BigCalendar";
-import Friends from "@/components/Session/Friends";
 import OnlineUsers from "@/components/Session/OnlineUsers";
 import CustomButton from "@/components/UI/Button";
 import PillTabs from "@/components/UI/PillTabs";
 import React from "react";
 import SectionContainer from "@/components/UI/SectionContainer";
+import SessionForm from "@/components/Session/SessionForm";
+import CustomBackdrop from "@/components/UI/CustomBackdrop";
 
 const Sessions = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -51,7 +51,13 @@ const Sessions = () => {
           </div>
         }
       />
-      <BackdropSession isOpen={isOpen} setIsOpen={setIsOpen} />
+      <CustomBackdrop
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        title="Set up Session"
+      >
+        <SessionForm />
+      </CustomBackdrop>
     </SectionContainer>
   );
 };

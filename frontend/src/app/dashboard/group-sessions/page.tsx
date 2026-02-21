@@ -1,11 +1,13 @@
 "use client";
-import BackdropSession from "@/components/UI/BackdropSession";
+import BackdropSession from "@/components/UI/CustomBackdrop";
 import BigCalendar from "@/components/UI/BigCalendar";
 import CustomButton from "@/components/UI/Button";
 import PillTabs from "@/components/UI/PillTabs";
 import React, { useState } from "react";
 import AllSessions from "@/components/GroupSessions/AllSessions";
 import SectionContainer from "@/components/UI/SectionContainer";
+import CustomBackdrop from "@/components/UI/CustomBackdrop";
+import SessionForm from "@/components/Session/SessionForm";
 
 const GroupSessions = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,8 +52,13 @@ const GroupSessions = () => {
           </div>
         }
       />
-
-      <BackdropSession isOpen={isOpen} setIsOpen={setIsOpen} />
+      <CustomBackdrop
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        title="Set up Session"
+      >
+        <SessionForm />
+      </CustomBackdrop>
     </SectionContainer>
   );
 };
