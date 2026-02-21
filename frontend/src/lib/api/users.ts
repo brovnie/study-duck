@@ -117,7 +117,6 @@ export const getCurrentUser = async () => {
   });
 
   const responseData = await response.json();
-  console.log(responseData);
   if (!response.ok) {
     throw responseData;
   }
