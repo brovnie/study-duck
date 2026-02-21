@@ -32,6 +32,8 @@ const Profile = () => {
   const points = useGetPoints(user?.id);
   const sessionsCount = useGetSessionsCount(user?.id);
 
+  if (!user) return null;
+
   return (
     <div className="w-full px-4 mt-3 mb-5">
       <div className="hidden lg:block">
@@ -89,7 +91,7 @@ const Profile = () => {
               </div>
             </div>
             <CustomLink
-              href="/dashboard/profile"
+              href={`/dashboard/profile/${user?.id}`}
               text="Profile"
               variant="primary"
               cssClass="w-min"
