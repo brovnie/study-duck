@@ -20,7 +20,7 @@ interface CustomDateTimePickerProps {
 
 export default function CustomDateTimePicker(props: CustomDateTimePickerProps) {
   const [value, setValue] = useState<Dayjs | null>(null);
-  console.log(props.error);
+
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DateTimePicker
