@@ -7,6 +7,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const formatMinutesToHours = (totalMinutes: number) => {
+  if (!Number.isFinite(totalMinutes)) return "N/A";
   const hours = Math.floor(totalMinutes / 60);
   const minutes = totalMinutes % 60;
 
