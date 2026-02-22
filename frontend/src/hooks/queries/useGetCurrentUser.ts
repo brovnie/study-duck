@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 export const useGetCurrentUser = () => {
   const path = usePathname();
   return useQuery({
-    queryKey: ["current-user"],
+    queryKey: ["user"],
     queryFn: getCurrentUser,
     enabled: path.startsWith("/dashboard"),
   });
