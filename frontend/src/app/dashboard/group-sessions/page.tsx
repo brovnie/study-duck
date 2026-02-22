@@ -1,12 +1,10 @@
 "use client";
-import BackdropSession from "@/components/UI/Modal";
 import BigCalendar from "@/components/UI/BigCalendar";
 import CustomButton from "@/components/UI/Button";
 import PillTabs from "@/components/UI/PillTabs";
 import React, { useState } from "react";
 import AllSessions from "@/components/GroupSessions/AllSessions";
 import SectionContainer from "@/components/UI/SectionContainer";
-import CustomBackdrop from "@/components/UI/Modal";
 import SessionForm from "@/components/Session/SessionForm";
 import CustomModal from "@/components/UI/Modal";
 
