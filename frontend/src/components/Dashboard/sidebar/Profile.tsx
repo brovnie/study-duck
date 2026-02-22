@@ -30,7 +30,7 @@ const CustomAccordion = styled(Accordion)(({ theme }) => ({
 const Profile = () => {
   const { user } = useUser();
   const points = useGetPoints(user?.id);
-  const sessionsCount = useGetSessionsCount(user?.id);
+  const sessionsCount = useGetSessionsCount(user?.id, "completed");
 
   if (!user) return null;
 

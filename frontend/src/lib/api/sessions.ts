@@ -61,8 +61,10 @@ export const getStudyTime = async (id?: string) => {
 
   return responseData;
 };
-export const getSessionsCount = async (id?: string) => {
-  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}users/${id}/sessions/count`;
+export const getSessionsCount = async (id?: string, type?: string) => {
+  const url = `${
+    process.env.NEXT_PUBLIC_API_BASE_URL
+  }users/${id}/sessions/count${type ? `?type=${type}` : ""}`;
 
   const response = await fetch(url, {
     method: "GET",

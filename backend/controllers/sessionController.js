@@ -63,6 +63,7 @@ exports.createSession = async (req, res) => {
 
 exports.getCountSessions = async (req, res) => {
   const { id } = req.params;
+  const { type } = req.query;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).json({
@@ -70,11 +71,18 @@ exports.getCountSessions = async (req, res) => {
       message: "Invalid ID format",
     });
   }
-  //count completed sessions
-  const totalSessions = await Session.countDocuments({
-    participants: id,
-    status: "completed",
-  });
+  let totalSessions;
+
+  if (!type) {
+    totalSessions = await Session.countDocuments({
+      participants: id,
+    });
+  } else {
+    totalSessions = await Session.countDocuments({
+      participants: id,
+      status: type,
+    });
+  }
 
   res.status(200).json({
     status: "success",

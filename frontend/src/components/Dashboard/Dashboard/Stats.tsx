@@ -9,7 +9,7 @@ import { useCountFriends } from "@/hooks/queries/useContFriends";
 
 const Stats = () => {
   const { user } = useUser();
-  const sessionsCount = useGetSessionsCount(user?.id);
+  const sessionsCount = useGetSessionsCount(user?.id, "completed");
   const sessionsStudyTime = useGetStudyTime(user?.id);
   const totalFriends = useCountFriends(user?.id);
 

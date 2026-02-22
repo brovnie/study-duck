@@ -20,7 +20,7 @@ const Stats = ({ userId }: UserProps) => {
   const max = maxPoints(currentPoints);
   const missingPoints = max?.points - currentPoints;
   const level = useGetLevel(userId);
-  const sessionsCount = useGetSessionsCount(userId);
+  const sessionsCount = useGetSessionsCount(userId, "completed");
   const studyingTime = useGetStudyTime(userId);
   const totalFriends = useCountFriends(userId);
 
