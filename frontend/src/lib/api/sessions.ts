@@ -29,7 +29,7 @@ export const createSession = async (data: {
   return responseData;
 };
 
-export const getSessionWeek = async (id: string) => {
+export const getSessionWeek = async () => {
   const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}sessions/weekly`;
 
   const response = await fetch(url, {
@@ -45,7 +45,7 @@ export const getSessionWeek = async (id: string) => {
 
   return responseData;
 };
-export const getStudyTime = async (id: string) => {
+export const getStudyTime = async () => {
   const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}sessions/studytime`;
 
   const response = await fetch(url, {
@@ -61,7 +61,7 @@ export const getStudyTime = async (id: string) => {
 
   return responseData;
 };
-export const getSessionsCount = async (id: string) => {
+export const getSessionsCount = async () => {
   const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}sessions/completed`;
 
   const response = await fetch(url, {

@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 export const useGetSessionsWeek = (id?: string) => {
   return useQuery({
     queryKey: ["user", "sessions", "week", id],
-    queryFn: () => getSessionWeek(id as string),
+    queryFn: () => getSessionWeek(),
     enabled: !!id,
   });
 };
