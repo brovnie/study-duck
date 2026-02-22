@@ -28,3 +28,52 @@ export const createSession = async (data: {
 
   return responseData;
 };
+
+export const getSessionWeek = async (id: string) => {
+  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}sessions/weekly`;
+
+  const response = await fetch(url, {
+    method: "GET",
+    credentials: "include",
+  });
+
+  const responseData = await response.json();
+
+  if (!response.ok) {
+    throw responseData;
+  }
+
+  return responseData;
+};
+export const getStudyTime = async (id: string) => {
+  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}sessions/studytime`;
+
+  const response = await fetch(url, {
+    method: "GET",
+    credentials: "include",
+  });
+
+  const responseData = await response.json();
+
+  if (!response.ok) {
+    throw responseData;
+  }
+
+  return responseData;
+};
+export const getSessionsCount = async (id: string) => {
+  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}sessions/completed`;
+
+  const response = await fetch(url, {
+    method: "GET",
+    credentials: "include",
+  });
+
+  const responseData = await response.json();
+
+  if (!response.ok) {
+    throw responseData;
+  }
+
+  return responseData;
+};

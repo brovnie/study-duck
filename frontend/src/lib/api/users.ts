@@ -161,7 +161,7 @@ export const getPoints = async (id: string) => {
 };
 
 export const getSessionsCount = async (id: string) => {
-  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}users/${id}/sessions/completed`;
+  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}sessions/completed`;
 
   const response = await fetch(url, {
     method: "GET",
@@ -178,7 +178,7 @@ export const getSessionsCount = async (id: string) => {
 };
 
 export const getStudyTime = async (id: string) => {
-  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}users/${id}/sessions/studytime`;
+  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}sessions/studytime`;
 
   const response = await fetch(url, {
     method: "GET",
@@ -212,7 +212,7 @@ export const getCountFriends = async (id: string) => {
 };
 
 export const getSessionWeek = async (id: string) => {
-  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}users/${id}/sessions/weekly`;
+  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}sessions/weekly`;
 
   const response = await fetch(url, {
     method: "GET",

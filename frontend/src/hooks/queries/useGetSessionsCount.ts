@@ -1,4 +1,4 @@
-import { getSessionsCount } from "@/lib/api/users";
+import { getSessionsCount } from "@/lib/api/sessions";
 import { useQuery } from "@tanstack/react-query";
 
 export const useGetSessionsCount = (id?: string) => {
