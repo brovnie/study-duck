@@ -7,6 +7,12 @@ router.get("/", sessionController.getAllSessions);
 
 router.get("/weekly", authMiddleware, sessionController.getWeekly);
 
+router.get(
+  "/planned/available",
+  authMiddleware,
+  sessionController.getAvailablePlannedSessions
+);
+
 router.get("/:id", sessionController.getSessionById);
 
 router.post("/", sessionController.createSession);

@@ -79,3 +79,21 @@ export const getSessionsCount = async (id?: string, type?: string) => {
 
   return responseData;
 };
+
+export const getAvaliablePlannedSessions = async (type?: string) => {
+  const url = `${
+    process.env.NEXT_PUBLIC_API_BASE_URL
+  }sessions/planned/available${type ? `?type=${type}` : ""}`;
+
+  const response = await fetch(url, {
+    method: "GET",
+    credentials: "include",
+  });
+  const responseData = await response.json();
+
+  if (!response.ok) {
+    throw responseData;
+  }
+
+  return responseData;
+};
