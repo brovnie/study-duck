@@ -197,7 +197,7 @@ exports.getAvailablePlannedSessions = async (req, res) => {
     type: type,
     admin: { $ne: id },
     participants: { $ne: id },
-    startTime: {
+    startingTime: {
       $gte: fiveMinutesAgo,
     },
   }).populate("participants", "name logo level _id profilePic");
