@@ -8,7 +8,7 @@ import {
   Radio,
   RadioGroup,
 } from "@mui/material";
-import dayjs, { Dayjs } from "dayjs";
+import dayjs from "dayjs";
 import InfoIcon from "../UI/InfoIcon";
 import SelectInput2 from "../UI/SelectInput2";
 import DateTimePicker from "../UI/DateTimePicker";
