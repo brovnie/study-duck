@@ -63,12 +63,7 @@ exports.createSession = async (req, res) => {
 
 exports.getCompletedSessions = async (req, res) => {
   const id = req.user.id;
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).json({
-      status: "error",
-      message: "Invalid ID format",
-    });
-  }
+
   const totalSessions = await Session.countDocuments({
     participants: id,
     status: "completed",
@@ -83,13 +78,6 @@ exports.getCompletedSessions = async (req, res) => {
 
 exports.getStudyTime = async (req, res) => {
   const id = req.user.id;
-
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).json({
-      status: "error",
-      message: "Invalid ID format",
-    });
-  }
 
   const result = await Session.aggregate([
     {
@@ -117,13 +105,6 @@ exports.getStudyTime = async (req, res) => {
 
 exports.getWeekly = async (req, res) => {
   const id = req.user.id;
-
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).json({
-      status: "error",
-      message: "Invalid ID format",
-    });
-  }
 
   const today = new Date();
   const dayOfTheWeek = today.getDay();
