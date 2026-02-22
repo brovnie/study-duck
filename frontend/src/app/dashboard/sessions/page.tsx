@@ -1,12 +1,12 @@
 "use client";
 import BigCalendar from "@/components/UI/BigCalendar";
-import OnlineUsers from "@/components/Session/OnlineUsers";
 import CustomButton from "@/components/UI/Button";
 import PillTabs from "@/components/UI/PillTabs";
 import React from "react";
 import SectionContainer from "@/components/UI/SectionContainer";
 import SessionForm from "@/components/Session/SessionForm";
 import CustomModal from "@/components/UI/Modal";
+import SessionsTable from "@/components/Session/SessionsTable";
 
 const Sessions = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -42,7 +42,7 @@ const Sessions = () => {
       <PillTabs
         view1={
           <div>
-            <OnlineUsers />
+            <SessionsTable />
           </div>
         }
         view2={

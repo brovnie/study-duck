@@ -12,7 +12,7 @@ import {
 import React, { useState } from "react";
 import CustomLink from "../UI/Link";
 
-const OnlineUsers = () => {
+const SessionsTable = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -125,4 +125,4 @@ const OnlineUsers = () => {
   );
 };
 
-export default OnlineUsers;
+export default SessionsTable;
