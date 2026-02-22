@@ -190,13 +190,17 @@ exports.getWeekly = async (req, res) => {
 exports.getAvailablePlannedSessions = async (req, res) => {
   const id = req.user.id;
   const type = req.query.type;
+  const fiveMinutesAgo = new Date(Date.now() - 5 * 60 * 1000);
 
   const sessions = await Session.find({
     status: "planned",
     type: type,
     admin: { $ne: id },
     participants: { $ne: id },
-  }).populate("participants", "name logo level _id profilePic startingTime");
+    startTime: {
+      $gte: fiveMinutesAgo,
+    },
+  }).populate("participants", "name logo level _id profilePic");
 
   res.status(200).json({
     status: "success",

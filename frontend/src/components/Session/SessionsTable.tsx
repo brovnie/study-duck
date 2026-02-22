@@ -58,6 +58,9 @@ const SessionsTable = () => {
               {paginatedSessions.map((session: SessionsType) => (
                 <SessionTableRow key={session._id} session={session} />
               ))}
+              {paginatedSessions.length === 0 && (
+                <p className="pt-4 text-center">No sessions found</p>
+              )}
             </TableBody>
           </Table>
           <TablePagination
