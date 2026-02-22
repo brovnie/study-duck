@@ -1,10 +1,12 @@
+const baseUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}users`;
+
 //
 // Create a new user
 export const createUser = async (data: {
   email: FormDataEntryValue | null;
   password: FormDataEntryValue | null;
 }) => {
-  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}users/signup`;
+  const url = `${baseUrl}/signup`;
 
   const response = await fetch(url, {
     method: "POST",
@@ -35,7 +37,7 @@ export const createUserProfile = async (data: {
   timezone: FormDataEntryValue | null;
   image: string | null;
 }) => {
-  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}users/signup/profile`;
+  const url = `${baseUrl}/signup/profile`;
 
   const response = await fetch(url, {
     method: "PATCH",
@@ -67,7 +69,7 @@ export const loginUser = async (data: {
   email: FormDataEntryValue | null;
   password: FormDataEntryValue | null;
 }) => {
-  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}users/signin`;
+  const url = `${baseUrl}/signin`;
 
   const response = await fetch(url, {
     method: "POST",
@@ -91,7 +93,7 @@ export const loginUser = async (data: {
 };
 
 export const logoutUser = async () => {
-  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}users/logout`;
+  const url = `${baseUrl}/logout`;
 
   const response = await fetch(url, {
     method: "POST",
@@ -109,7 +111,7 @@ export const logoutUser = async () => {
 
 //Get current user based on token
 export const getCurrentUser = async () => {
-  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}users/me`;
+  const url = `${baseUrl}/me`;
 
   const response = await fetch(url, {
     method: "GET",
@@ -127,7 +129,7 @@ export const getCurrentUser = async () => {
 //
 // Get user by ID
 export const getUserById = async (id: string) => {
-  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}users/${id}`;
+  const url = `${baseUrl}/${id}`;
 
   const response = await fetch(url, {
     method: "GET",
@@ -143,8 +145,8 @@ export const getUserById = async (id: string) => {
   return responseData;
 };
 
-export const getPoints = async (id: string) => {
-  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}users/${id}/points`;
+export const getPoints = async (id?: string) => {
+  const url = `${baseUrl + "/" + id}/points`;
 
   const response = await fetch(url, {
     method: "GET",
@@ -160,25 +162,8 @@ export const getPoints = async (id: string) => {
   return responseData;
 };
 
-export const getSessionsCount = async (id: string) => {
-  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}sessions/completed`;
-
-  const response = await fetch(url, {
-    method: "GET",
-    credentials: "include",
-  });
-
-  const responseData = await response.json();
-
-  if (!response.ok) {
-    throw responseData;
-  }
-
-  return responseData;
-};
-
-export const getStudyTime = async (id: string) => {
-  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}sessions/studytime`;
+export const getLevel = async (id?: string) => {
+  const url = `${baseUrl + "/" + id}/level`;
 
   const response = await fetch(url, {
     method: "GET",
@@ -195,41 +180,7 @@ export const getStudyTime = async (id: string) => {
 };
 
 export const getCountFriends = async (id: string) => {
-  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}users/${id}/friends/count`;
-
-  const response = await fetch(url, {
-    method: "GET",
-    credentials: "include",
-  });
-
-  const responseData = await response.json();
-
-  if (!response.ok) {
-    throw responseData;
-  }
-
-  return responseData;
-};
-
-export const getSessionWeek = async (id: string) => {
-  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}sessions/weekly`;
-
-  const response = await fetch(url, {
-    method: "GET",
-    credentials: "include",
-  });
-
-  const responseData = await response.json();
-
-  if (!response.ok) {
-    throw responseData;
-  }
-
-  return responseData;
-};
-
-export const getLevel = async (id: string) => {
-  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}users/${id}/level`;
+  const url = `${baseUrl}/${id}/friends/count`;
 
   const response = await fetch(url, {
     method: "GET",

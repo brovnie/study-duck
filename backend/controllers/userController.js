@@ -107,14 +107,7 @@ exports.getUserPoints = async (req, res) => {
 };
 
 exports.getUserLevel = async (req, res) => {
-  const { id } = req.params;
-
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).json({
-      status: "error",
-      message: "Invalid ID format",
-    });
-  }
+  const id = req.user.id;
 
   const user = await User.findById(id);
 

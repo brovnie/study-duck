@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 export const useGetSessionsCount = (id?: string) => {
   return useQuery({
     queryKey: ["user", "sessions", "count", id],
-    queryFn: () => getSessionsCount(),
+    queryFn: () => getSessionsCount(id as string),
     enabled: !!id,
   });
 };

@@ -61,9 +61,16 @@ exports.createSession = async (req, res) => {
   });
 };
 
-exports.getCompletedSessions = async (req, res) => {
-  const id = req.user.id;
+exports.getCountSessions = async (req, res) => {
+  const { id } = req.params;
 
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({
+      status: "error",
+      message: "Invalid ID format",
+    });
+  }
+  //count completed sessions
   const totalSessions = await Session.countDocuments({
     participants: id,
     status: "completed",
@@ -77,8 +84,13 @@ exports.getCompletedSessions = async (req, res) => {
 };
 
 exports.getStudyTime = async (req, res) => {
-  const id = req.user.id;
-
+  const { id } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({
+      status: "error",
+      message: "Invalid ID format",
+    });
+  }
   const result = await Session.aggregate([
     {
       $match: {
