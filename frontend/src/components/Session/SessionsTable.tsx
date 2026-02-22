@@ -59,7 +59,11 @@ const SessionsTable = () => {
                 <SessionTableRow key={session._id} session={session} />
               ))}
               {paginatedSessions.length === 0 && (
-                <p className="pt-4 text-center">No sessions found</p>
+                <TableRow>
+                  <TableCell colSpan={6}>
+                    <p className="text-center">No sessions found</p>{" "}
+                  </TableCell>
+                </TableRow>
               )}
             </TableBody>
           </Table>
