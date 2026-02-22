@@ -3,11 +3,13 @@ import { Avatar, TableCell, TableRow } from "@mui/material";
 import CustomLink from "../UI/Link";
 import { levels } from "@/data/levels";
 import { SessionsType } from "./types";
+import CountdownTimer from "../UI/CountdownTimer";
 
 const SessionTableRow = ({ session }: { session: SessionsType }) => {
   const duckLevelColor = levels.find(
     (lv) => lv.name === session.participants[0].level
   )?.color;
+
   return (
     <TableRow key={session._id} className="even:bg-rod-500">
       <TableCell component="th" scope="row">
@@ -36,11 +38,16 @@ const SessionTableRow = ({ session }: { session: SessionsType }) => {
           <span>{session.participants[0].level}</span>
         </div>
       </TableCell>
-      <TableCell>5 min</TableCell>
+      <TableCell>
+        <CountdownTimer
+          eventDate={session.startingTime}
+          queries={["user", "sessions", "planned-available", "one-on-one"]}
+        />
+      </TableCell>
       <TableCell>{formatMinutesToHours(session.duration)}</TableCell>
       <TableCell>
         <CustomLink
-          href={`/dashboard/study-session/${session._id}`}
+          href={`/study-session/${session._id}`}
           text="Join"
           variant="primary"
         />

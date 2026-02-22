@@ -27,3 +27,27 @@ export const maxPoints = (currentPoints: number) => {
 
   return found || levels[0];
 };
+
+export const countTimeDifference = (time: Date) => {
+  const timeNow = new Date().getTime();
+  const sessionTime = new Date(time).getTime();
+  const diff = timeNow - sessionTime;
+
+  if (diff < -2) {
+    return {
+      sessionStatus: "ended",
+      days: 0,
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
+    };
+  }
+
+  return {
+    sessionStatus: "ongoing",
+    days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+    hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+    minutes: Math.floor((diff / (1000 * 60)) % 60),
+    seconds: Math.floor((diff / 1000) % 60),
+  };
+};
