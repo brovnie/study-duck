@@ -38,47 +38,19 @@ exports.getUserById = async (req, res) => {
 };
 
 exports.getCurrentUser = async (req, res) => {
-  try {
-    // read the token from the cookie
-    const token = req.cookies?.jwt;
-    if (!token) {
-      return res.status(401).json({ status: "fail", message: "Not logged in" });
-    }
-    // verify the JWT
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+  const user = req.user;
 
-    // check that decoded.id exists and is a valid MongoDB ObjectId
-    if (!decoded?.id || !mongoose.isValidObjectId(decoded.id)) {
-      return res
-        .status(401)
-        .json({ status: "fail", message: "Invalid token ID" });
-    }
-
-    // find the user by ID
-    const user = await User.findById(decoded.id);
-    if (!user) {
-      return res
-        .status(401)
-        .json({ status: "fail", message: "User not found" });
-    }
-    // return the user
-    return res.status(200).json({
-      status: "success",
-      data: {
-        id: user._id,
-        name: user.name,
-        profilePic: user.profilePic,
-        institute: user.institute,
-        timeZone: user.timeZone,
-      },
-      token: token,
-    });
-  } catch (err) {
-    console.error(err);
-    return res
-      .status(401)
-      .json({ status: "fail", message: "Token invalid or expired" });
-  }
+  return res.status(200).json({
+    status: "success",
+    data: {
+      id: user._id,
+      name: user.name,
+      profilePic: user.profilePic,
+      institute: user.institute,
+      timeZone: user.timeZone,
+    },
+    token: token,
+  });
 };
 
 exports.getUserPoints = async (req, res) => {

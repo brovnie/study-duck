@@ -7,8 +7,8 @@ const sessionController = require("../controllers/sessionController");
 
 const router = express.Router();
 
-router.get("/", userController.getAllUsers);
-router.get("/me", userController.getCurrentUser);
+router.get("/", authMiddleware, userController.getAllUsers);
+router.get("/me", authMiddleware, userController.getCurrentUser);
 
 router.get("/:id/points", authMiddleware, userController.getUserPoints);
 router.get("/:id/level", authMiddleware, userController.getUserLevel);
@@ -23,8 +23,12 @@ router.get(
   authMiddleware,
   sessionController.getStudyTime
 );
-router.get("/:id/friends", userController.getFriends);
-router.get("/:id/friends/count", userController.getFriendsCount);
+router.get("/:id/friends", authMiddleware, userController.getFriends);
+router.get(
+  "/:id/friends/count",
+  authMiddleware,
+  userController.getFriendsCount
+);
 
 router.get("/:id", authMiddleware, userController.getUserById);
 
