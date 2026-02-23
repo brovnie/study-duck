@@ -120,3 +120,26 @@ export const joinSession = async (data: { id?: string; userId?: string }) => {
 
   return responseData;
 };
+
+export const leaveSession = async (data: { id?: string; userId?: string }) => {
+  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}sessions/${data.id}/leave`;
+
+  const response = await fetch(url, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify({
+      userId: data.userId,
+    }),
+  });
+
+  const responseData = await response.json();
+
+  if (!response.ok) {
+    throw responseData;
+  }
+
+  return responseData;
+};

@@ -238,3 +238,34 @@ exports.joinSession = async (req, res) => {
     },
   });
 };
+
+exports.leaveSession = async (req, res) => {
+  const { id } = req.params;
+  const { userId } = req.body;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({
+      status: "error",
+      message: "Invalid ID format",
+    });
+  }
+
+  const session = await Session.findById(id);
+
+  if (!session) {
+    return res.status(404).json({
+      status: "error",
+      message: "Session not found",
+    });
+  }
+
+  session.participants.pull(userId);
+
+  await session.save();
+  res.status(200).json({
+    status: "success",
+    data: {
+      session,
+    },
+  });
+};

@@ -12,7 +12,7 @@ interface SessionsActionButtonsProps {
 const SessionsActionButtons = ({ session }: SessionsActionButtonsProps) => {
   const { user } = useUser();
   const isActive = session.participants.some((p) => p._id === user?.id);
-  console.log(session);
+
   return (
     <>
       {isActive ? (
@@ -25,7 +25,7 @@ const SessionsActionButtons = ({ session }: SessionsActionButtonsProps) => {
           />
         </div>
       ) : (
-        <JoinButton sessionId={session._id} sessionType={session.type} />
+        <JoinButton sessionId={session._id} />
       )}
     </>
   );
