@@ -210,7 +210,6 @@ exports.getAvailablePlannedSessions = async (req, res) => {
 
 exports.joinSession = async (req, res) => {
   const { id } = req.params;
-  console.log(id);
   const { userId } = req.body;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
