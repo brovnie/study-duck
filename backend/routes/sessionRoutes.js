@@ -3,7 +3,8 @@ const sessionController = require("../controllers/sessionController");
 const authMiddleware = require("../middleware/authMiddleware");
 const router = express.Router();
 
-router.get("/", sessionController.getAllSessions);
+router.get("/", authMiddleware, sessionController.getAllSessions);
+router.post("/", authMiddleware, sessionController.createSession);
 
 router.get("/weekly", authMiddleware, sessionController.getWeekly);
 
@@ -13,8 +14,6 @@ router.get(
   sessionController.getAvailablePlannedSessions
 );
 
-router.get("/:id", sessionController.getSessionById);
-
-router.post("/", sessionController.createSession);
+router.get("/:id", authMiddleware, sessionController.getSessionById);
 
 module.exports = router;

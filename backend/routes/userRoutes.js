@@ -26,7 +26,7 @@ router.get(
 router.get("/:id/friends", userController.getFriends);
 router.get("/:id/friends/count", userController.getFriendsCount);
 
-router.get("/:id", userController.getUserById);
+router.get("/:id", authMiddleware, userController.getUserById);
 
 router.post("/signup", authController.signup);
 router.post("/avatar-signature", uploadController.avatarSignature);
