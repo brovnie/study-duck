@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "@mui/material/Button";
 
-interface ButtonType {
+interface ButtonProps {
   variant: "primary" | "secondary";
   text: string;
   icon?: React.ReactNode;
@@ -11,7 +11,7 @@ interface ButtonType {
   disabled?: boolean;
 }
 
-const CustomButton = (props: ButtonType) => {
+const CustomButton = (props: ButtonProps) => {
   return (
     <Button
       variant="contained"

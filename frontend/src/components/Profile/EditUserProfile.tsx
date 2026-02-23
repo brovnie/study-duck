@@ -6,11 +6,11 @@ import TimezoneSelect from "../TimezoneSelect";
 import CustomButton from "../UI/Button";
 import Form from "next/form";
 
-type EditUserProfilePropsTypes = {
+type EditUserProfileProps = {
   setIsEdyting: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const EditUserProfile = ({ setIsEdyting }: EditUserProfilePropsTypes) => {
+const EditUserProfile = ({ setIsEdyting }: EditUserProfileProps) => {
   return (
     <Form action={() => {}} className="flex flex-col gap-5 items-center mt-3">
       <AvatarUpload />

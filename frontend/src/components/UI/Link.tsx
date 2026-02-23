@@ -1,6 +1,6 @@
 import React from "react";
 
-type LinkType = {
+type LinkProps = {
   href: string;
   text: string;
   cssClass?: string;
@@ -14,7 +14,7 @@ const CustomLink = ({
   cssClass,
   variant = "primary",
   icon,
-}: LinkType) => {
+}: LinkProps) => {
   return (
     <a
       href={href}

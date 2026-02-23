@@ -2,7 +2,7 @@
 import { Modal } from "@mui/material";
 import React from "react";
 
-type CustomModalTypes = {
+type CustomModalProps = {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   children: React.ReactNode;
@@ -14,7 +14,7 @@ const CustomModal = ({
   setIsOpen,
   children,
   title,
-}: CustomModalTypes) => {
+}: CustomModalProps) => {
   return (
     <Modal open={isOpen} className="z-10 flex items-center justify-center">
       <div className="bg-white rounded-xl shadow-md w-[325px] py-4 px-5">
