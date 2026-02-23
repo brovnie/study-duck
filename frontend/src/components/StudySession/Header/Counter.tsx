@@ -9,7 +9,6 @@ const Counter = () => {
   const sessionId = params.id as string;
   const { data, isLoading } = useGetSession(sessionId);
   const session = data?.session;
-  console.log(data);
   const date = new Date(session.startingTime);
   date.setMinutes(date.getMinutes() + session.duration);
 
