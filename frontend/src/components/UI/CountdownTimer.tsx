@@ -36,7 +36,7 @@ const CountdownTimer = ({ eventDate, queries }: CountdownTimerProps) => {
 
     const timeout = setTimeout(() => {
       setIsNow(false);
-      queryClient.invalidateQueries({
+      queryClient.refetchQueries({
         queryKey: queries,
         exact: true,
       });
