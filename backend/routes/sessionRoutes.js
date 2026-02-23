@@ -14,6 +14,8 @@ router.get(
   sessionController.getAvailablePlannedSessions
 );
 
+router.patch("/:id/join", authMiddleware, sessionController.joinSession);
+
 router.get("/:id", authMiddleware, sessionController.getSessionById);
 
 module.exports = router;

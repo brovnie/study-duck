@@ -11,7 +11,7 @@ import {
 import React, { useState } from "react";
 import { useGetAvaliablePlannedSessions } from "@/hooks/queries/useGetAvaliablePlannedSessions";
 import SessionTableRow from "./SessionTableRow";
-import { SessionsType } from "./types";
+import { SessionTypes } from "./types";
 
 const SessionsTable = () => {
   const [page, setPage] = useState(0);
@@ -55,7 +55,7 @@ const SessionsTable = () => {
                 },
               }}
             >
-              {paginatedSessions.map((session: SessionsType) => (
+              {paginatedSessions.map((session: SessionTypes) => (
                 <SessionTableRow key={session._id} session={session} />
               ))}
               {paginatedSessions.length === 0 && (

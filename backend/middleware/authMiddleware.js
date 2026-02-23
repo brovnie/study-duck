@@ -7,7 +7,6 @@ module.exports = async function authMiddleware(req, res, next) {
   if (req.cookies && req.cookies.jwt) {
     token = req.cookies.jwt;
   }
-
   if (!token) {
     return res.status(401).json({ message: "You are not logged in" });
   }

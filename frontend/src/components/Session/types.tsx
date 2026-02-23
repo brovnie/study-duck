@@ -1,8 +1,9 @@
-export interface SessionsType {
+export interface SessionTypes {
   _id: string;
   admin: string;
   duration: number;
   startingTime: Date;
+  type: string;
   participants: [
     {
       name: string;

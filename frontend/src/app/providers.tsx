@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import theme from "./theme";
 import { UserProvider } from "@/context/UserContext";
@@ -14,6 +15,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <AppRouterCacheProvider options={{ enableCssLayer: false, prepend: true }}>
       <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools initialIsOpen={false} />
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <UserProvider>{children}</UserProvider>

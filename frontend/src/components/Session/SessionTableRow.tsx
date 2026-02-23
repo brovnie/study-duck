@@ -1,11 +1,11 @@
 import { formatMinutesToHours } from "@/lib/utils";
 import { Avatar, TableCell, TableRow } from "@mui/material";
-import CustomLink from "../UI/Link";
 import { levels } from "@/data/levels";
-import { SessionsType } from "./types";
+import { SessionTypes } from "./types";
 import CountdownTimer from "../UI/CountdownTimer";
+import SessionsActionButtons from "../UI/SessionActionButtons/SessionsActionButtons";
 
-const SessionTableRow = ({ session }: { session: SessionsType }) => {
+const SessionTableRow = ({ session }: { session: SessionTypes }) => {
   const duckLevelColor = levels.find(
     (lv) => lv.name === session.participants[0].level
   )?.color;
@@ -46,11 +46,7 @@ const SessionTableRow = ({ session }: { session: SessionsType }) => {
       </TableCell>
       <TableCell>{formatMinutesToHours(session.duration)}</TableCell>
       <TableCell>
-        <CustomLink
-          href={`/study-session/${session._id}`}
-          text="Join"
-          variant="primary"
-        />
+        <SessionsActionButtons session={session} />
       </TableCell>
     </TableRow>
   );

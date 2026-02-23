@@ -196,7 +196,6 @@ exports.getAvailablePlannedSessions = async (req, res) => {
     status: "planned",
     type: type,
     admin: { $ne: id },
-    participants: { $ne: id },
     startingTime: {
       $gte: fiveMinutesAgo,
     },
@@ -206,5 +205,37 @@ exports.getAvailablePlannedSessions = async (req, res) => {
     status: "success",
     total: sessions.length,
     sessions: sessions,
+  });
+};
+
+exports.joinSession = async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  const { userId } = req.body;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({
+      status: "error",
+      message: "Invalid ID format",
+    });
+  }
+
+  const session = await Session.findById(id);
+
+  if (!session) {
+    return res.status(404).json({
+      status: "error",
+      message: "Session not found",
+    });
+  }
+
+  session.participants.push(userId);
+
+  await session.save();
+  res.status(200).json({
+    status: "success",
+    data: {
+      session,
+    },
   });
 };

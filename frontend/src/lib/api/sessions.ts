@@ -5,7 +5,7 @@ export const createSession = async (data: {
   startingTime: Date | null;
 }) => {
   const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}sessions`;
-  console.log("user id is", data.userId);
+
   const response = await fetch(url, {
     method: "POST",
     headers: {
@@ -89,6 +89,29 @@ export const getAvaliablePlannedSessions = async (type?: string) => {
     method: "GET",
     credentials: "include",
   });
+  const responseData = await response.json();
+
+  if (!response.ok) {
+    throw responseData;
+  }
+
+  return responseData;
+};
+
+export const joinSession = async (data: { id?: string; userId?: string }) => {
+  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}sessions/${data.id}/join`;
+
+  const response = await fetch(url, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify({
+      userId: data.userId,
+    }),
+  });
+
   const responseData = await response.json();
 
   if (!response.ok) {

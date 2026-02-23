@@ -14,7 +14,8 @@ export async function middleware(req: NextRequest) {
 
   const url = "/auth?signup=false";
   if (!token) {
-    return NextResponse.redirect(new URL(url, req.url));
+    console.log("No token found, redirecting to auth page");
+    //return NextResponse.redirect(new URL(url, req.url));
   }
 
   return NextResponse.next();
