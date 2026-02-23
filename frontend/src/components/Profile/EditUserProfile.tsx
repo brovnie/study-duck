@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import AvatarUpload from "../UI/AvatarUpload";
 import TextInput from "../UI/TextInput";
 import TimezoneSelect from "../TimezoneSelect";
@@ -11,9 +11,11 @@ type EditUserProfileProps = {
 };
 
 const EditUserProfile = ({ setIsEdyting }: EditUserProfileProps) => {
+  const [resetImg, setResetImg] = useState(false);
+
   return (
     <Form action={() => {}} className="flex flex-col gap-5 items-center mt-3">
-      <AvatarUpload />
+      <AvatarUpload resetImage={resetImg} />
       <TextInput
         type="text"
         id="name"

@@ -16,24 +16,6 @@ export async function middleware(req: NextRequest) {
   if (!token) {
     return NextResponse.redirect(new URL(url, req.url));
   }
-  try {
-    const decoded = jwtDecode<JWTTokensInterface>(token);
-
-    if (decoded.exp! * 1000 < Date.now()) {
-      return NextResponse.redirect(new URL(url, req.url));
-    }
-    if (!decoded.id) {
-      return NextResponse.redirect(new URL(url, req.url));
-    }
-
-    const user = await getUserById(decoded.id);
-
-    if (!user) {
-      return NextResponse.redirect(new URL(url, req.url));
-    }
-  } catch (err) {
-    return NextResponse.redirect(new URL(url, req.url));
-  }
 
   return NextResponse.next();
 }

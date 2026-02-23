@@ -18,7 +18,7 @@ const ProfileAuth = (userId: { userId: string | null }) => {
     input: string | undefined;
   }>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [resetImg, setResetImg] = React.useState(false);
+  const [resetImg, setResetImg] = useState(false);
   const { data: signature } = useAvatarSignature();
   const createUserProfile = useCreateUserProfile();
   const router = useRouter();
