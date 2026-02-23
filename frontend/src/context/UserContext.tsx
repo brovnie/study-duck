@@ -1,6 +1,7 @@
 "use client";
 import { useLogout } from "@/hooks/mutations/useLogout";
 import { useGetCurrentUser } from "@/hooks/queries/useGetCurrentUser";
+import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import {
   createContext,
@@ -37,13 +38,18 @@ const UserContext = createContext<UserContextType | undefined>(undefined);
 export const UserProvider = ({ children }: UserProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(null);
-  const { data, isLoading } = useGetCurrentUser();
+  const { isLoading, refetch } = useGetCurrentUser();
   const logoutUser = useLogout();
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   useEffect(() => {
-    if (data) setUser(data.data);
-  }, [data]);
+    const fetchUser = async () => {
+      const result = await refetch();
+      if (result.data) setUser(result.data.data);
+    };
+    fetchUser();
+  }, []);
 
   const login = (userData: User, token: string) => {
     setToken(token);
@@ -62,6 +68,9 @@ export const UserProvider = ({ children }: UserProviderProps) => {
 
   const updateUser = (updates: Partial<User>) => {
     setUser((prev) => (prev ? { ...prev, ...updates } : prev));
+    queryClient.setQueryData(["user"], (old: any) => ({
+      data: { ...old?.data, ...updates },
+    }));
   };
 
   const setTemporaryToken = (token: string) => {

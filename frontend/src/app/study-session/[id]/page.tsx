@@ -1,11 +1,13 @@
 "use client";
-import { useParams } from "next/navigation";
 import React from "react";
+import PageValidator from "./page-validator";
 
 const StudySessionPage = () => {
-  const params = useParams();
-  console.log(params);
-  return <div>StudySessionPage</div>;
+  return (
+    <PageValidator>
+      <div>StudySessionPage</div>
+    </PageValidator>
+  );
 };
 
 export default StudySessionPage;

@@ -13,14 +13,18 @@ const queryClient = new QueryClient();
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <AppRouterCacheProvider options={{ enableCssLayer: false, prepend: true }}>
-      <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools initialIsOpen={false} />
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <UserProvider>{children}</UserProvider>
-        </ThemeProvider>
-      </QueryClientProvider>
-    </AppRouterCacheProvider>
+    <QueryClientProvider client={queryClient}>
+      <UserProvider>
+        <AppRouterCacheProvider
+          options={{ enableCssLayer: false, prepend: true }}
+        >
+          <ReactQueryDevtools initialIsOpen={false} />
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            {children}
+          </ThemeProvider>
+        </AppRouterCacheProvider>
+      </UserProvider>
+    </QueryClientProvider>
   );
 }

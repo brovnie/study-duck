@@ -7,7 +7,6 @@ export const useLogout = () => {
   return useMutation({
     mutationFn: logoutUser,
     onSuccess: (data) => {
-      console.log("data is", data);
       queryClient.removeQueries({
         queryKey: ["user"],
       });
