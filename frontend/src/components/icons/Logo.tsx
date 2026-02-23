@@ -6,7 +6,7 @@ const ruloko = Ruluko({
   display: "swap",
   variable: "--font-ruluko",
 });
-const Logo = () => {
+const Logo = ({ white }: { white?: boolean }) => {
   return (
     <div className="flex items-center gap-2 group cursor-pointer">
       <svg
@@ -23,7 +23,9 @@ const Logo = () => {
         />
       </svg>
       <p
-        className={`${ruloko.className} text-[14px] uppercase hidden md:block`}
+        className={`${ruloko.className} text-[14px] uppercase hidden md:block ${
+          white && "text-white"
+        }`}
       >
         Study Duck
       </p>

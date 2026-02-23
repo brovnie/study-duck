@@ -18,7 +18,7 @@ const CustomLink = ({
   return (
     <a
       href={href}
-      className={`uppercase text-sm px-5  py-2 font-[500] rounded-sm ${
+      className={`uppercase text-sm px-5  flex items-center justify-between  py-2 font-[500] rounded-sm ${
         variant === "primary"
           ? "bg-amber-300 hover:bg-amber-400"
           : "bg-[#fafafa] hover:bg-slate-100"
