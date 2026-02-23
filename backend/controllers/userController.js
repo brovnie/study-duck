@@ -39,6 +39,7 @@ exports.getUserById = async (req, res) => {
 
 exports.getCurrentUser = async (req, res) => {
   const user = req.user;
+  const token = req.cookies.jwt;
 
   return res.status(200).json({
     status: "success",
