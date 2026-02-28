@@ -14,7 +14,14 @@ const PageValidator = ({ children }: { children: React.ReactNode }) => {
 
   const isUserInSession = data.session.participants.includes(user.id);
 
-  if (!isUserInSession) router.push("/dashboard");
+  const sessionStartingTime = new Date(data.session.startingTime);
+  const sessionEndTime = new Date(
+    sessionStartingTime.getTime() + data.session.duration * 60 * 1000
+  ).getTime();
+  const dateNow = new Date().getTime();
+  const isSessionActif = dateNow < sessionEndTime;
+
+  if (!isUserInSession || !isSessionActif) router.push("/dashboard");
   return <>{children}</>;
 };
 
