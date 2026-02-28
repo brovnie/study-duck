@@ -160,3 +160,20 @@ export const leaveSession = async (data: { id?: string; userId?: string }) => {
 
   return responseData;
 };
+
+export const getVideoToken = async (id?: string) => {
+  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}sessions/${id}/getToken`;
+
+  const response = await fetch(url, {
+    method: "GET",
+    credentials: "include",
+  });
+
+  const responseData = await response.json();
+
+  if (!response.ok) {
+    throw responseData;
+  }
+
+  return responseData;
+};

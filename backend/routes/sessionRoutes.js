@@ -1,6 +1,7 @@
 const express = require("express");
 const sessionController = require("../controllers/sessionController");
 const authMiddleware = require("../middleware/authMiddleware");
+const videoController = require("../controllers/videoController");
 const router = express.Router();
 
 router.get("/", authMiddleware, sessionController.getAllSessions);
@@ -16,6 +17,11 @@ router.get(
 
 router.patch("/:id/join", authMiddleware, sessionController.joinSession);
 router.patch("/:id/leave", authMiddleware, sessionController.leaveSession);
+router.get(
+  "/:id/getToken",
+  authMiddleware,
+  videoController.generateStreamToken
+);
 
 router.get("/:id", authMiddleware, sessionController.getSessionById);
 

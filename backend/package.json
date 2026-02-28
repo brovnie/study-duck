@@ -13,6 +13,7 @@
     "start:prod": "NODE_ENV=production nodemon server.js"
   },
   "dependencies": {
+    "@stream-io/node-sdk": "^0.7.42",
     "bcryptjs": "^3.0.3",
     "cloudinary": "^2.9.0",
     "cookie-parser": "^1.4.7",
