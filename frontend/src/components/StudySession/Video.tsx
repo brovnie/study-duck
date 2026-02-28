@@ -1,17 +1,29 @@
 "use client";
-import { useGetVideoToken } from "@/hooks/queries/useGetVideoToken";
+import { useCreateVideoToken } from "@/hooks/mutations/useCreateVideoToken";
 import { useParams } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const Video = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const params = useParams();
   const sessionId = params.id as string;
 
-  const { data, isLoading, isError } = useGetVideoToken(sessionId);
-  const token = data?.token;
+  const createVideoToken = useCreateVideoToken();
+  useEffect(() => {
+    setIsLoading(true);
+    createVideoToken.mutate(sessionId, {
+      onSuccess: (data) => {
+        console.log("Video token created successfully:", data.token);
+      },
+      onError: (error) => {
+        console.log("error has happend in video token");
+      },
+      onSettled: () => {
+        setIsLoading(false);
+      },
+    });
+  }, [sessionId]);
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error</div>;
   return <div>Video</div>;
 };
 

@@ -165,7 +165,10 @@ export const getVideoToken = async (id?: string) => {
   const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}sessions/${id}/getToken`;
 
   const response = await fetch(url, {
-    method: "GET",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
     credentials: "include",
   });
 

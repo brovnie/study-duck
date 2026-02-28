@@ -17,7 +17,7 @@ router.get(
 
 router.patch("/:id/join", authMiddleware, sessionController.joinSession);
 router.patch("/:id/leave", authMiddleware, sessionController.leaveSession);
-router.get(
+router.post(
   "/:id/getToken",
   authMiddleware,
   videoController.generateStreamToken
