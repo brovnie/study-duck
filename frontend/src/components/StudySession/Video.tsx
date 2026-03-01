@@ -3,9 +3,7 @@ import { useUser } from "@/context/UserContext";
 import { useCreateVideoToken } from "@/hooks/mutations/useCreateVideoToken";
 import {
   Call,
-  CallControls,
   CallingState,
-  SpeakerLayout,
   StreamCall,
   StreamTheme,
   StreamVideo,
@@ -90,8 +88,6 @@ import {
   type StreamVideoParticipant,
 } from "@stream-io/video-react-sdk";
 
-// ... rest of the App.tsx code
-
 export const MyParticipantList = (props: {
   participants: StreamVideoParticipant[];
 }) => {
@@ -107,8 +103,6 @@ export const MyParticipantList = (props: {
     </div>
   );
 };
-
-// ... rest of the App.tsx code
 
 export const MyFloatingLocalParticipant = (props: {
   participant?: StreamVideoParticipant;
