@@ -1,7 +1,7 @@
 const serverClient = require("../config/stream");
 
 exports.generateStreamToken = async (req, res) => {
-  const { id } = req.params;
+  const id = req.user.id;
   const token = serverClient.generateUserToken({
     user_id: id,
   });
